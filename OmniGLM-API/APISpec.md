@@ -42,6 +42,9 @@ Length - Int
 DateAdded - DateTime
 DateCompleted - DateTime
 BlockedBy - GUID (FK Game)
+Format - Enumified String
+Condition - Enumified String
+Notes - Text
 ```
 
 ### Series:
@@ -69,15 +72,18 @@ The are the code-side representations of the data. The repository pattern will b
 ### Game: 
 ```
 ID - GUID
-Series - Series
+Series? - Series
 Genre - Genre
 Console - Console
 Release Date - DateTime
 Status - Status
 Length - Int
-DateAdded - DateTime
+DateAdded? - DateTime
 DateCompleted? - DateTime
 BlockedBy? - Game
+Format? - Format
+Condition? - Condition
+Notes? - String
 ```
 ### Series:
 ```
@@ -104,6 +110,20 @@ Playing
 Completed
 Wishlist
 LentOut
+```
+
+### Enum Format
+```
+Physical
+Digital
+CollectorsEdition
+```
+
+### Enum Condition
+```
+CompleteInBox
+MissingInserts
+Loose
 ```
 
 ## Endpoints
@@ -147,7 +167,10 @@ Status 200 OK
                 "length": 80,
                 "dateAdded": "2012-03-03T01:00:00Z",
                 "dateCompleted": "2012-19-08T01:00:00Z",
-                "blockedBy": null
+                "blockedBy": null,
+                "format": "SpecialEdition",
+                "condition": "CompleteInBox"
+                "notes": null
             },
             {
                 "id": "02d1d49a-ba59-4baf-8668-ed74edb5543d",
@@ -190,7 +213,13 @@ Status 200 OK
                     "dateAdded": "2017-21-03T01:00:00Z",
                     "dateCompleted": null,
                     "blockedBy": null
-                }
+                    "format": "SpecialEdition",
+                    "condition": "CompleteInBox"
+                    "notes": "Chapter 3 - in Uraya, met up with Vandham"
+                },
+                "format": "SpecialEdition",
+                "condition": "MissingInserts"
+                "notes": null
             }
         ]
     }
