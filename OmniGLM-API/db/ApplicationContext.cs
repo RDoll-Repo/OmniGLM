@@ -7,6 +7,7 @@ namespace OmniGLM_API.db
     {
         private readonly ApplicationConfig _appConfig;
         private string _connectionString => _appConfig.ConnectionString;
+        public DbSet<Sample> Samples { get; set; }
 
         public ApplicationContext(
             ApplicationConfig appConfig
@@ -14,8 +15,6 @@ namespace OmniGLM_API.db
         {
             _appConfig = appConfig;
         }
-
-        public DbSet<Sample> Samples { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {

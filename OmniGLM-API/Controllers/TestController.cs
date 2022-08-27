@@ -22,9 +22,4 @@ public class TestController : ControllerBase
     {
         return await _dbSet.Where(Sample => true).ToListAsync();
     }
-
-    // public async Task<IEnumerable<TEntity>> WhereAsync(Expression<Func<TEntity, bool>> predicate)
-    // {
-    //     return await _dbSet.Where(predicate).ToListAsync();
-    // }
 }
