@@ -1,3 +1,8 @@
+-- As of right now, we don't have postgrator running these migrations. 
+-- There's permission shit I don't feel like fucking with
+-- so we're just running them manually and keeping them here for archival. 
+-- TODO: add postgrator support 
+
 CREATE TABLE IF NOT EXISTS series
 (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
