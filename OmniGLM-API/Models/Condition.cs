@@ -2,8 +2,8 @@ namespace OmniGLM_API.Models
 {
     public enum Condition
     {
-        CompleteInBox,
-        MissingInserts,
+        CIB,
+        Partial,
         Loose
     }
 }
