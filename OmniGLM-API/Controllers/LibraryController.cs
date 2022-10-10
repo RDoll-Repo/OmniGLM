@@ -16,7 +16,7 @@ namespace OmniGLM_API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Game>>> TestGet()
+        public async Task<ActionResult<IEnumerable<Game>>> GetLibrary()
         {
             var result =  await _service.TestGet();
 
