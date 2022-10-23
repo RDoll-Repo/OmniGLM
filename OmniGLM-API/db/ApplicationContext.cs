@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OmniGLM_API.Models;
 
 namespace OmniGLM_API.db
@@ -10,8 +11,10 @@ namespace OmniGLM_API.db
         public DbSet<Game> Games { get; set; }
 
         public ApplicationContext(
-            ApplicationConfig appConfig
+            ApplicationConfig appConfig,
+            DbContextOptions options
         )
+        : base(options)
         {
             _appConfig = appConfig;
         }
@@ -22,5 +25,28 @@ namespace OmniGLM_API.db
                 .EnableSensitiveDataLogging()
                 .UseSnakeCaseNamingConvention();
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            var statusConverter = new EnumToStringConverter<Status>();
+            var formatConverter = new EnumToStringConverter<Format>();
+            var conditionConverter = new EnumToStringConverter<Condition>();
+
+            modelBuilder
+                .Entity<Game>()
+                .Property(g => g.Status)
+                .HasConversion(statusConverter);
+
+            modelBuilder
+                .Entity<Game>()
+                .Property(g => g.Format)
+                .HasConversion(formatConverter);
+
+            modelBuilder
+                .Entity<Game>()
+                .Property(g => g.Condition)
+                .HasConversion(conditionConverter);
+        }
+
     }
 }
