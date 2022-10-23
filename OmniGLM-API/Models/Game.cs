@@ -5,6 +5,7 @@ namespace OmniGLM_API.Models
     public class Game : IEntity<Guid>
     {
         public Guid Id { get; set; }
+        public string Title { get; set; }
         public Series? Series { get; set; }
         public Genre Genre { get; set; }
         public Console Console { get; set; }
@@ -16,6 +17,6 @@ namespace OmniGLM_API.Models
         public Game? BlockedBy { get; set; }
         public Format? Format { get; set; }
         public Condition? Condition { get; set; }
-        public String? Notes { get; set; }
+        public string? Notes { get; set; }
     }
 }

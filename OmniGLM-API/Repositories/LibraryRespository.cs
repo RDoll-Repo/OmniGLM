@@ -6,6 +6,7 @@ namespace OmniGLM_API.Repositories
     public interface ILibraryRepository
     {
         Task<IEnumerable<Game>> TestGet();
+        Task<Game?> FetchEntry(Guid id);
     }
 
     public class LibraryRepository : ILibraryRepository
@@ -20,6 +21,11 @@ namespace OmniGLM_API.Repositories
         public async Task<IEnumerable<Game>> TestGet()
         {
             return await _efCoreService.WhereAsync(Game => true);
+        }
+
+        public async Task<Game?> FetchEntry(Guid id)
+        {
+            return await _efCoreService.FetchAsync(id);
         }
     }
 }
