@@ -1,11 +1,13 @@
 using OmniGLM_API.db;
 using OmniGLM_API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace OmniGLM_API.Repositories
 {
     public interface ILibraryRepository
     {
         Task<IEnumerable<Game>> TestGet();
+        Task<Game?> FetchEntry(Guid id);
     }
 
     public class LibraryRepository : ILibraryRepository
@@ -20,6 +22,18 @@ namespace OmniGLM_API.Repositories
         public async Task<IEnumerable<Game>> TestGet()
         {
             return await _efCoreService.WhereAsync(Game => true);
+        }
+
+        public async Task<Game?> FetchEntry(Guid id)
+        {
+            var results = await _efCoreService.QueryableWhere(g => g.Id == id)
+            .Include(g => g.Series)
+            .Include(g => g.Genre)
+            .Include(g => g.Console)
+            .Include(g => g.BlockedBy)
+            .FirstOrDefaultAsync();
+
+            return results;
         }
     }
 }

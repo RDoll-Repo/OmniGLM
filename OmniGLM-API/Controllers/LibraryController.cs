@@ -14,11 +14,20 @@ namespace OmniGLM_API.Controllers
         {
             _service = service;
         }
-
+        
+        // Doesn't work yet.
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Game>>> TestGet()
+        public async Task<ActionResult<IEnumerable<Game>>> GetLibrary()
         {
             var result =  await _service.TestGet();
+
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Game>> GetEntry(Guid id)
+        {
+            var result =  await _service.FetchEntry(id);
 
             return Ok(result);
         }

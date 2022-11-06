@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OmniGLM_API.Models;
 
 namespace OmniGLM_API.db
@@ -8,10 +9,15 @@ namespace OmniGLM_API.db
         private readonly ApplicationConfig _appConfig;
         private string _connectionString => _appConfig.ConnectionString;
         public DbSet<Game> Games { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Models.Console> Consoles { get; set; }
+        public DbSet<Series> Series { get; set; }
 
         public ApplicationContext(
-            ApplicationConfig appConfig
+            ApplicationConfig appConfig,
+            DbContextOptions options
         )
+        : base(options)
         {
             _appConfig = appConfig;
         }
@@ -21,6 +27,28 @@ namespace OmniGLM_API.db
             builder.UseNpgsql(_connectionString)
                 .EnableSensitiveDataLogging()
                 .UseSnakeCaseNamingConvention();
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            var statusConverter = new EnumToStringConverter<Status>();
+            var formatConverter = new EnumToStringConverter<Format>();
+            var conditionConverter = new EnumToStringConverter<Condition>();
+
+            modelBuilder
+                .Entity<Game>()
+                .Property(g => g.Status)
+                .HasConversion(statusConverter);
+
+            modelBuilder
+                .Entity<Game>()
+                .Property(g => g.Format)
+                .HasConversion(formatConverter);
+
+            modelBuilder
+                .Entity<Game>()
+                .Property(g => g.Condition)
+                .HasConversion(conditionConverter);
         }
     }
 }
