@@ -13,8 +13,6 @@ namespace OmniGLM_API.db
         public DbSet<Models.Console> Consoles { get; set; }
         public DbSet<Series> Series { get; set; }
 
-
-
         public ApplicationContext(
             ApplicationConfig appConfig,
             DbContextOptions options
@@ -52,6 +50,5 @@ namespace OmniGLM_API.db
                 .Property(g => g.Condition)
                 .HasConversion(conditionConverter);
         }
-
     }
 }
