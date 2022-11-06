@@ -14,6 +14,7 @@ namespace OmniGLM_API.db
         public DbSet<Series> Series { get; set; }
 
 
+
         public ApplicationContext(
             ApplicationConfig appConfig,
             DbContextOptions options

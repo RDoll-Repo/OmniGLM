@@ -25,7 +25,15 @@ namespace OmniGLM_API.Services
 
         public async Task<Game?> FetchEntry(Guid id)
         {
-            return await _repo.FetchEntry(id);
+            var results = await _repo.FetchEntry(id);
+            
+            // if (results.BlockedById != null && results.BlockedById != null)
+            // {
+            //     // Empty guid is mostly here to keep the compiler happy.
+            //     var x = await _repo.FetchBlockingGame(results.BlockedById ?? Guid.Empty);
+            // }
+
+            return results;
         }
     }
 }

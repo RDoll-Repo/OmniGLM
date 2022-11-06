@@ -4,6 +4,7 @@ namespace OmniGLM_API.Models
     {
         CIB,
         Partial,
-        Loose
+        Loose,
+        NA
     }
 }
