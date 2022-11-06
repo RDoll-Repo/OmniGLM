@@ -8,7 +8,6 @@ namespace OmniGLM_API.Repositories
     {
         Task<IEnumerable<Game>> TestGet();
         Task<Game?> FetchEntry(Guid id);
-        //Task<Game?> FetchBlockingGame(Guid id);
     }
 
     public class LibraryRepository : ILibraryRepository
@@ -27,8 +26,6 @@ namespace OmniGLM_API.Repositories
 
         public async Task<Game?> FetchEntry(Guid id)
         {
-            //return await _efCoreService.FetchAsync(id);
-
             var results = await _efCoreService.QueryableWhere(g => g.Id == id)
             .Include(g => g.Series)
             .Include(g => g.Genre)
@@ -38,10 +35,5 @@ namespace OmniGLM_API.Repositories
 
             return results;
         }
-
-        // public async Task<Game?> FetchBlockingGame(Guid id)
-        // {
-        //     return await _efCoreService.FetchAsync(id);
-        // }
     }
 }
