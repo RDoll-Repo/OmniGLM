@@ -25,7 +25,9 @@ namespace OmniGLM_API.Services
 
         public async Task<Game?> FetchEntry(Guid id)
         {
-            return await _repo.FetchEntry(id);
+            var results = await _repo.FetchEntry(id);
+
+            return results;
         }
     }
 }
