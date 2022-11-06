@@ -74,7 +74,7 @@ namespace OmniGLM_API.Models
 
         public FetchGameViewModel()
         {
-            
+
         }
 
         public FetchGameViewModel(Game game)
@@ -88,10 +88,14 @@ namespace OmniGLM_API.Models
             Length = game.Length;
             DateAdded = game.DateAdded;
             DateCompleted = game.DateCompleted;
-            BlockedBy = new BlockingGameViewModel(game.BlockedBy);
             Format = game.Format;
             Condition = game.Condition;
             Notes = game.Notes;
+
+            if (game.BlockedBy != null)
+            {
+                BlockedBy = new BlockingGameViewModel(game.BlockedBy);
+            }
         }
     }
 }
