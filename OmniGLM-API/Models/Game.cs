@@ -8,8 +8,8 @@ namespace OmniGLM_API.Models
         public Guid Id { get; set; }
         public string Title { get; set; }
         public Series? Series { get; set; }
-        public Genre Genre { get; set; }
-        public Console Console { get; set; }
+        public Genre? Genre { get; set; }
+        public Console? Console { get; set; }
         public DateTime ReleaseDate { get; set; }
 
         [JsonConverter(typeof(JsonStringEnumConverter))]

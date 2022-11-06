@@ -9,6 +9,10 @@ namespace OmniGLM_API.db
         private readonly ApplicationConfig _appConfig;
         private string _connectionString => _appConfig.ConnectionString;
         public DbSet<Game> Games { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Models.Console> Consoles { get; set; }
+        public DbSet<Series> Series { get; set; }
+
 
         public ApplicationContext(
             ApplicationConfig appConfig,
