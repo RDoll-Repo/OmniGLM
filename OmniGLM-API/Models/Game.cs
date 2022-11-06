@@ -26,4 +26,14 @@ namespace OmniGLM_API.Models
         public Condition? Condition { get; set; }
         public string? Notes { get; set; }
     }
+
+    public class BlockingGameViewModel
+    {
+        public Guid Id { get; set; }
+        public string Title { get; set; }
+
+        public Series? Series { get; set; }
+        public int Length { get; set; }
+        public string Notes { get; set; }
+    }
 }
