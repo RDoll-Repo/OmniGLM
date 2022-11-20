@@ -98,4 +98,19 @@ namespace OmniGLM_API.Models
             }
         }
     }
+
+    public class PostGamePayload
+    {
+        public string Title { get; set; }
+        public Guid? SeriesId { get; set; }
+        public Guid GenreId { get; set; }
+        public Guid ConsoleId { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        public DateTime? DateAdded { get; set; }
+        public DateTime? DateCompleted { get; set; }
+        public Game? BlockedBy { get; set; }
+        public Format? Format { get; set; }
+        public Condition? Condition { get; set; }
+        public string? Notes { get; set; }
+    }
 }
