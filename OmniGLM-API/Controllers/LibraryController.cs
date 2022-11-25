@@ -30,6 +30,14 @@ namespace OmniGLM_API.Controllers
 
             return Ok(result);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Game>> CreateEntry(PostGamePayload payload)
+        {
+            var result = await _service.CreateEntry(payload);
+
+            return Created("", result);
+        }
     }
 }
 

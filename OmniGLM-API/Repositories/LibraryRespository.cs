@@ -8,6 +8,7 @@ namespace OmniGLM_API.Repositories
     {
         Task<IEnumerable<Game>> GetLibrary();
         Task<Game?> FetchEntry(Guid id);
+        Task<Game> CreateEntry(Game payload);
     }
 
     public class LibraryRepository : ILibraryRepository
@@ -41,6 +42,13 @@ namespace OmniGLM_API.Repositories
             .FirstOrDefaultAsync();
 
             return results;
+        }
+
+        public async Task<Game> CreateEntry(Game payload)
+        {
+            var result = await _efCoreService.CreateAsync(payload);
+
+            return result;
         }
     }
 }

@@ -8,8 +8,8 @@ namespace OmniGLM_API.Models
         public Guid Id { get; set; }
         public string Title { get; set; }
         public Series? Series { get; set; }
-        public Genre? Genre { get; set; }
-        public Console? Console { get; set; }
+        public Genre Genre { get; set; }
+        public Console Console { get; set; }
         public DateTime ReleaseDate { get; set; }
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
@@ -20,11 +20,72 @@ namespace OmniGLM_API.Models
         public Game? BlockedBy { get; set; }
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
-        public Format? Format { get; set; }
+        public Format Format { get; set; }
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Condition? Condition { get; set; }
         public string? Notes { get; set; }
+
+        public Game() 
+        {
+            // Empty
+        }
+
+        public Game(PostGamePayload p)
+        {
+            Title = p.Title;
+
+            if (p.SeriesId != null)
+            {
+                Series = new Series
+                {
+                    Id = (Guid)p.SeriesId
+                };
+            }
+
+            Genre = new Genre
+            {
+                Id = p.GenreId
+            };
+
+            Console = new Console
+            {
+                Id = p.ConsoleId
+            };
+
+            ReleaseDate = p.ReleaseDate;
+            
+            if (p.DateCompleted != null)
+            {
+                DateCompleted = p.DateCompleted;
+                Status = Status.Completed;
+            }
+            else
+            {
+                Status = Status.Unfinished;
+            }
+
+            // TODO: Remove when HLTB support is added.
+            Length = 0;
+            DateAdded = DateTime.Now;
+
+            if (p.BlockedBy != null)
+            {
+                BlockedBy = p.BlockedBy;
+            }
+
+            Format = p.Format;
+
+            if (p.Condition != null)
+            {
+                Condition = p.Condition;
+            }
+
+            if (p.Notes != null)
+            {
+                Notes = p.Notes;
+            }
+        }
     }
 
     public class BlockingGameViewModel
@@ -74,7 +135,7 @@ namespace OmniGLM_API.Models
 
         public FetchGameViewModel()
         {
-
+            
         }
 
         public FetchGameViewModel(Game game)
@@ -106,10 +167,13 @@ namespace OmniGLM_API.Models
         public Guid GenreId { get; set; }
         public Guid ConsoleId { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public DateTime? DateAdded { get; set; }
         public DateTime? DateCompleted { get; set; }
         public Game? BlockedBy { get; set; }
-        public Format? Format { get; set; }
+
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public Format Format { get; set; }
+
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public Condition? Condition { get; set; }
         public string? Notes { get; set; }
     }
