@@ -20,6 +20,6 @@ namespace OmniGLM_API.Models
         public string Genre { get; set; }
         public int Length { get; set; }
         public DateTime DateAdded { get; set; } = DateTime.Now;
-        public DateTime? DataCompleted { get; set; }
+        public DateTime? DateCompleted { get; set; }
     }
 }
