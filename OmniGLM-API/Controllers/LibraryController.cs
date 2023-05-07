@@ -22,14 +22,6 @@ namespace OmniGLM_API.Controllers
 
             return Ok(result);
         }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Game>> GetEntry(Guid id)
-        {
-            var result =  await _service.FetchEntry(id);
-
-            return Ok(result);
-        }
     }
 }
 

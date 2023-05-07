@@ -22,10 +22,6 @@ namespace OmniGLM_API.Repositories
         public async Task<IEnumerable<Game>> GetLibrary()
         {
             var results = await _efCoreService.QueryableWhere(Game => true)
-            .Include(g => g.Series)
-            .Include(g => g.Genre)
-            .Include(g => g.Console)
-            .Include(g => g.BlockedBy)
             .ToListAsync();
 
             return results;
@@ -34,10 +30,6 @@ namespace OmniGLM_API.Repositories
         public async Task<Game?> FetchEntry(Guid id)
         {
             var results = await _efCoreService.QueryableWhere(g => g.Id == id)
-            .Include(g => g.Series)
-            .Include(g => g.Genre)
-            .Include(g => g.Console)
-            .Include(g => g.BlockedBy)
             .FirstOrDefaultAsync();
 
             return results;
