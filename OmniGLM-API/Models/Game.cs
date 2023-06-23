@@ -7,9 +7,7 @@ namespace OmniGLM_API.Models
         public Guid Id { get; set; }
         public string Title { get; set; }
         public Status Status { get; set; }
-
-        // TODO: Normalize
-        public string Console { get; set; }
+        public Console Console { get; set; }
 
         // TODO: Enum
         public string Format { get; set; }
