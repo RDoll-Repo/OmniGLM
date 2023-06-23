@@ -20,7 +20,7 @@ namespace OmniGLM_API.Models
         }
     }
 
-    public class AddGamePayload
+    public class AddGamePayload : IValidatable
     {
         public string Title { get; set; }
         public Status Status { get; set; }
@@ -31,7 +31,7 @@ namespace OmniGLM_API.Models
         public DateTime DateAdded { get; set; } = DateTime.Now;
         public DateTime? DateCompleted { get; set; }
 
-        public bool IsValid =>
+        public bool IsValid() =>
             !String.IsNullOrWhiteSpace(Title)
                 && ConsoleId != Guid.Empty
                 && GenreIds.Count > 0
