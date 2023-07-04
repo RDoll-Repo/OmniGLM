@@ -4,8 +4,6 @@ namespace OmniGLM_API.Models
     {
         Unfinished,
         Playing,
-        Completed,
-        Wishlist,
-        LentOut
+        Completed
     }
 }
