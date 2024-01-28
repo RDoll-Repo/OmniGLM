@@ -13,7 +13,7 @@ At the end of this phase, we should have a functioning, albeit barebones API tha
 |       | Tasks                                                 |
 |-------|-------------------------------------------------------|
 |&check;| Scaffold API and set up EF Core                       |
-|~      | Initial documentation                                 |
+|&check;| Initial documentation                                 |
 |&#9744;| Game CRUD                                             |
 |&#9744;| Genre CRUD                                            |
 |&#9744;| Console CRUD                                          |
@@ -34,7 +34,8 @@ Initial hopes for this phase will include error handling, and unit tests- potent
 |&#9744;| Unit tests                                            |
 |&#9744;| Auth                                                  |
 |&#9744;| Fully define README                                   |
-|| Additional tasks TBD....                              |
+|&#9744;| Github integration (IE: PR Templates)                 |
+|&#9744;| Additional tasks TBD....                              |
 
 ## Future Features
 This section is for outlining the features I would like to incorporate but have no place in the forseeable timeline as of yet. 
