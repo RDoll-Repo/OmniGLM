@@ -18,8 +18,6 @@ August 7, 2022 - Document Initialized, Data Tables and Models added, Get Entire 
 These are the outward facing REST resources exposed to the client. Many resources are categories being built with the intention of being expandable to include more instances of a category than what comes out of the box.
 
 * **Game**: A game represents an entry in the user's library. It is the main resource of the project. 
-  
-* **Series**: The franchise that a particular title belongs to. It is one to many with games.
 
 * **Genre**: A category of gameplay style a game belongs to. It is one to many with games.
 
@@ -33,7 +31,6 @@ These are the server-side representations of the resources, while there will be 
 ```
 ID - GUID (PK)
 Title - String
-SeriesID - GUID (FK Series)
 GenreID - GUID (FK Genre)
 ConsoleID - GUID (FK Console)
 ReleaseDate - DateTime
@@ -45,12 +42,6 @@ BlockedBy - GUID (FK Game)
 Format - Enumified String
 Condition - Enumified String
 Notes - Text
-```
-
-### Series:
-```
-ID - GUID (PK)
-SeriesTitle - String
 ```
 
 ### Genre:
