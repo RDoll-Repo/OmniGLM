@@ -131,7 +131,7 @@ Status 200 OK
                 },
                 "length": 80,
                 "dateAdded": "2012-03-03T01:00:00Z",
-                "dateCompleted": "2012-19-08T01:00:00Z"
+                "dateCompleted": "2012-08-19T01:00:00Z"
             },
             {
                 "id": "d3201b32-1dd5-4545-94b4-e9edb5b1c79c",
@@ -147,7 +147,7 @@ Status 200 OK
                     "genreName": "Japanese RPG"
                 },
                 "length": 53,
-                "dateAdded": "2022-26-07T01:00:00Z",
+                "dateAdded": "2022-07-26T01:00:00Z",
                 "dateCompleted": null
             },
             {
@@ -160,11 +160,11 @@ Status 200 OK
                 },
                 "format": "digital",
                 "genre": {
-                    "id": "11111111-b2f7-4b71-ab1d-b406350ae5fc",
+                    "id": "fa565198-fc73-4f43-9010-9146a6a9b90e",
                     "genreName": "Puzzle"
                 },
                 "length": 18,
-                "dateAdded": "2022-26-07T01:00:00Z",
+                "dateAdded": "2022-07-26T01:00:00Z",
                 "dateCompleted": null
             }
         ]
