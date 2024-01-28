@@ -12,7 +12,7 @@ namespace OmniGLM_API.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "console",
+                name: "consoles",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -20,11 +20,11 @@ namespace OmniGLM_API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_console", x => x.id);
+                    table.PrimaryKey("pk_consoles", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "genre",
+                name: "genres",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -32,7 +32,7 @@ namespace OmniGLM_API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_genre", x => x.id);
+                    table.PrimaryKey("pk_genres", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -42,26 +42,26 @@ namespace OmniGLM_API.Migrations
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     title = table.Column<string>(type: "text", nullable: false),
                     status = table.Column<int>(type: "integer", nullable: false),
-                    console_id = table.Column<Guid>(type: "uuid", nullable: false),
                     format = table.Column<int>(type: "integer", nullable: false),
-                    genre_id = table.Column<Guid>(type: "uuid", nullable: false),
                     length = table.Column<int>(type: "integer", nullable: false),
                     date_added = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    date_completed = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    date_completed = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    console_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    genre_id = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_games", x => x.id);
                     table.ForeignKey(
-                        name: "fk_games_console_console_id",
+                        name: "fk_games_consoles_console_id",
                         column: x => x.console_id,
-                        principalTable: "console",
+                        principalTable: "consoles",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "fk_games_genre_genre_id",
+                        name: "fk_games_genres_genre_id",
                         column: x => x.genre_id,
-                        principalTable: "genre",
+                        principalTable: "genres",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -84,10 +84,10 @@ namespace OmniGLM_API.Migrations
                 name: "games");
 
             migrationBuilder.DropTable(
-                name: "console");
+                name: "consoles");
 
             migrationBuilder.DropTable(
-                name: "genre");
+                name: "genres");
         }
     }
 }

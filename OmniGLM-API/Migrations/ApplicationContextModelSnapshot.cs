@@ -35,9 +35,9 @@ namespace OmniGLM_API.Migrations
                         .HasColumnName("title");
 
                     b.HasKey("Id")
-                        .HasName("pk_console");
+                        .HasName("pk_consoles");
 
-                    b.ToTable("console", (string)null);
+                    b.ToTable("consoles", (string)null);
                 });
 
             modelBuilder.Entity("OmniGLM_API.Models.Game", b =>
@@ -105,30 +105,40 @@ namespace OmniGLM_API.Migrations
                         .HasColumnName("title");
 
                     b.HasKey("Id")
-                        .HasName("pk_genre");
+                        .HasName("pk_genres");
 
-                    b.ToTable("genre", (string)null);
+                    b.ToTable("genres", (string)null);
                 });
 
             modelBuilder.Entity("OmniGLM_API.Models.Game", b =>
                 {
                     b.HasOne("OmniGLM_API.Models.Console", "Console")
-                        .WithMany()
+                        .WithMany("Games")
                         .HasForeignKey("ConsoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_games_console_console_id");
+                        .HasConstraintName("fk_games_consoles_console_id");
 
                     b.HasOne("OmniGLM_API.Models.Genre", "Genre")
-                        .WithMany()
+                        .WithMany("Games")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
-                        .HasConstraintName("fk_games_genre_genre_id");
+                        .HasConstraintName("fk_games_genres_genre_id");
 
                     b.Navigation("Console");
 
                     b.Navigation("Genre");
+                });
+
+            modelBuilder.Entity("OmniGLM_API.Models.Console", b =>
+                {
+                    b.Navigation("Games");
+                });
+
+            modelBuilder.Entity("OmniGLM_API.Models.Genre", b =>
+                {
+                    b.Navigation("Games");
                 });
 #pragma warning restore 612, 618
         }

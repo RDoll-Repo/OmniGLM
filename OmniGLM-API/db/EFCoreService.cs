@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using OmniGLM_API.Models;
 
 namespace OmniGLM_API.db
 {
