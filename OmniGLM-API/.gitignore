@@ -1,5 +1,3 @@
 bin/
 obj/
-lib/
-inflight_trace_dump/
 **/appsettings.*.json

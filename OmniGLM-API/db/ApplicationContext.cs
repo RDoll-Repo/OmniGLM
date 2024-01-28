@@ -12,7 +12,6 @@ namespace OmniGLM_API.db
         public DbSet<Models.Console> Consoles { get; set; }
         public DbSet<Genre> Genres { get; set; }
         
-
         public ApplicationContext(
             ApplicationConfig appConfig,
             DbContextOptions options
