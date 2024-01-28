@@ -1,6 +1,4 @@
 # Omni-GLM API Spec
-Document Version 0.1
-
 This spec outlines all endpoints and resources exposed by Omni-GLM. In addition, it also outlines the schema and model structures used to attain the desired behaviors. This is an ongoing project being built with ever-shifting requirements in mind, ergo this document should only be treated as comprehensive in the moment that it is updated. 
 
 The roster of endpoints we'll begin with is modest (i.e. basic CRUD for games), but will grow over time and development. The intended workflow for the addition of endpoints is the following: 
@@ -8,13 +6,7 @@ The roster of endpoints we'll begin with is modest (i.e. basic CRUD for games), 
 Theorize UX => Add Endpoint to Spec => Alter Schema (if needed) => Implementation
 ```
 
-## Update History
----
-August 7, 2022 - Document Initialized, Data Tables and Models added, Get Entire Library route added. 
-
-
 ## API Resources
----
 These are the outward facing REST resources exposed to the client. Many resources are categories being built with the intention of being expandable to include more instances of a category than what comes out of the box.
 
 * **Game**: A game represents an entry in the user's library. It is the main resource of the project. 
@@ -24,7 +16,6 @@ These are the outward facing REST resources exposed to the client. Many resource
 * **Console** A category of hardware a title is owned for. It is one to many with games.
 
 ## Data Tables
----
 These are the server-side representations of the resources, while there will be correlation, they are not gauranteed to line up 100% with the code-side models. 
 
 ### Game:
@@ -53,7 +44,6 @@ title : String
 ```
 
 ## Data Models
----
 The are the code-side representations of the data. The repository pattern will be used to keep these models as easy as possible to work with. 
 
 ### Game: 
@@ -96,7 +86,6 @@ Collectors
 ```
 
 ## Endpoints
----
 
 ### Get Library (To be deprecated after Search Implementation):
 ---
