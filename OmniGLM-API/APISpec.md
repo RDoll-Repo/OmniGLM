@@ -29,98 +29,76 @@ These are the server-side representations of the resources, while there will be 
 
 ### Game:
 ```
-ID - GUID (PK)
-Title - String
-GenreID - GUID (FK Genre)
-ConsoleID - GUID (FK Console)
-ReleaseDate - DateTime
-Status - Enumified String
-Length - Int
-DateAdded - DateTime
-DateCompleted - DateTime
-BlockedBy - GUID (FK Game)
-Format - Enumified String
-Condition - Enumified String
-Notes - Text
+id : GUID (PK)
+title : String
+status : Int (Enum Value)
+console_id : GUID (FK Console)
+format : Int (Enum Value)
+genre_id : GUID (FK Genre)
+length : Int
+date_added : DateTime
+date_completed : DateTime
 ```
 
 ### Genre:
 ```
-ID - GUID (PK)
-GenreName - String
+id : GUID (PK)
+title : String
 ```
 
 ### Console:
 ```
-ID - GUID (PK)
-ConsoleName - String
+id : GUID (PK)
+title : String
 ```
 
 ## Data Models
 ---
-The are the code-side representations of the data. The repository pattern will be used to keep these models as easy as possible to use. 
+The are the code-side representations of the data. The repository pattern will be used to keep these models as easy as possible to work with. 
 
 ### Game: 
 ```
-ID - GUID
-Series? - Series
-Genre - Genre
-Console - Console
-Release Date - DateTime
-Status - Status
-Length - Int
-DateAdded? - DateTime
-DateCompleted? - DateTime
-BlockedBy? - Game
-Format? - Format
-Condition? - Condition
-Notes? - String
-```
-### Series:
-```
-ID - GUID
-SeriesTitle - String
+Id : GUID
+Title : String
+Status : Status
+Console : Console
+Format : Format
+Genre : Genre
+Length : Int
+DateAdded : DateTime
+DateCompleted? : DateTime
 ```
 
 ### Genre:
 ```
-ID - GUID 
-GenreName - String
+Id : GUID 
+Title : String
 ```
 
 ### Console:
 ```
-ID - GUID 
-ConsoleName - String
+Id : GUID 
+title : String
 ```
 
 ### Enum Status
 ```
-Unfinished
+Backlog
 Playing
-Completed
-Wishlist
-LentOut
+Finished
 ```
 
 ### Enum Format
 ```
 Physical
 Digital
-CollectorsEdition
-```
-
-### Enum Condition
-```
-CompleteInBox
-MissingInserts
-Loose
+Collectors
 ```
 
 ## Endpoints
 ---
 
-### Get Library:
+### Get Library (To be deprecated after Search Implementation):
 ---
 ```
 GET /library
@@ -129,7 +107,7 @@ GET /library
 **Request Body:** None
 
 **Response Body:**
-```
+```json
 Status 200 OK
 
 {
@@ -141,76 +119,53 @@ Status 200 OK
             {
                 "id": "02d1d49a-ba59-4baf-8668-ed74edb5543d",
                 "title": "Persona 3 FES",
-                "series": {
-                    "id": "88d1553f-b2f7-4b71-ab1d-b406350ae5fc",
-                    "seriesTitle": "Persona"
-                },
-                "genre": {
-                    "id": "11111111-b2f7-4b71-ab1d-b406350ae5fc",
-                    "genreName": "JRPG"
-                },
+                "status": "finished",
                 "console": {
                     "id": "5b8defdc-ea65-40e8-9fc7-54ab8d7ff05e",
                     "consoleName": "Sony Playstation 2"
                 },
-                "releaseDate": "2007-19-04T01:00:00Z",
-                "status": "complete",
-                "length": 80,
-                "dateAdded": "2012-03-03T01:00:00Z",
-                "dateCompleted": "2012-19-08T01:00:00Z",
-                "blockedBy": null,
-                "format": "SpecialEdition",
-                "condition": "CompleteInBox"
-                "notes": null
-            },
-            {
-                "id": "02d1d49a-ba59-4baf-8668-ed74edb5543d",
-                "title": "Xenoblade Chronicles 3",
-                "series": {
-                    "id": "88d1553f-b2f7-4b71-ab1d-b406350ae5fc",
-                    "seriesTitle": "Xeno"
-                },
+                "format": "collectors",
                 "genre": {
                     "id": "11111111-b2f7-4b71-ab1d-b406350ae5fc",
-                    "genreName": "JRPG"
+                    "genreName": "Japanese RPG"
                 },
+                "length": 80,
+                "dateAdded": "2012-03-03T01:00:00Z",
+                "dateCompleted": "2012-19-08T01:00:00Z"
+            },
+            {
+                "id": "d3201b32-1dd5-4545-94b4-e9edb5b1c79c",
+                "title": "Xenoblade Chronicles 3",
+                "status": "backlog",
                 "console": {
-                    "id": "5b8defdc-ea65-40e8-9fc7-54ab8d7ff05e",
+                    "id": "84abfb03-f2f9-4113-aa83-4c4992be24c0",
                     "consoleName": "Nintendo Switch"
                 },
-                "releaseDate": "2022-26-07T01:00:00Z",
-                "status": "unfinished",
+                "format": "collectors",
+                "genre": {
+                    "id": "11111111-b2f7-4b71-ab1d-b406350ae5fc",
+                    "genreName": "Japanese RPG"
+                },
                 "length": 53,
                 "dateAdded": "2022-26-07T01:00:00Z",
-                "dateCompleted": null,
-                "blockedBy": {
-                    "id": "02d1d49a-ba59-4baf-8668-ed74edb5543d",
-                    "title": "Xenoblade Chronicles 2",
-                    "series": {
-                        "id": "88d1553f-b2f7-4b71-ab1d-b406350ae5fc",
-                        "seriesTitle": "Xeno"
-                    },
-                    "genre": {
-                        "id": "11111111-b2f7-4b71-ab1d-b406350ae5fc",
-                        "genreName": "JRPG"
-                    },
-                    "console": {
-                        "id": "5b8defdc-ea65-40e8-9fc7-54ab8d7ff05e",
-                        "consoleName": "Nintendo Switch"
-                    },
-                    "releaseDate": "2017-01-07T01:00:00Z",
-                    "status": "unfinished",
-                    "length": 67,
-                    "dateAdded": "2017-21-03T01:00:00Z",
-                    "dateCompleted": null,
-                    "blockedBy": null
-                    "format": "SpecialEdition",
-                    "condition": "CompleteInBox"
-                    "notes": "Chapter 3 - in Uraya, met up with Vandham"
+                "dateCompleted": null
+            },
+            {
+                "id": "e14b29d5-4151-447c-a56b-2806ff0caf7c",
+                "title": "Factorio",
+                "status": "playing",
+                "console": {
+                    "id": "7f775974-7dcd-4e29-a496-3048f57ff657",
+                    "consoleName": "PC"
                 },
-                "format": "SpecialEdition",
-                "condition": "MissingInserts"
-                "notes": null
+                "format": "digital",
+                "genre": {
+                    "id": "11111111-b2f7-4b71-ab1d-b406350ae5fc",
+                    "genreName": "Puzzle"
+                },
+                "length": 18,
+                "dateAdded": "2022-26-07T01:00:00Z",
+                "dateCompleted": null
             }
         ]
     }
