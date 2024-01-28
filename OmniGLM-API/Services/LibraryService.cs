@@ -19,7 +19,9 @@ namespace OmniGLM_API.Services
 
         public async Task<IEnumerable<Game>> GetLibrary()
         {
-            return await _repo.GetLibrary();
+            var results = await _repo.GetLibrary();
+
+            return results;
         }
     }
 }

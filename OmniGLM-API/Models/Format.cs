@@ -4,6 +4,6 @@ namespace OmniGLM_API.Models
     {
         Physical,
         Digital,
-        Special
+        Collectors
     }
 }

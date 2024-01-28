@@ -2,8 +2,8 @@ namespace OmniGLM_API.Models
 {
     public enum Status
     {
-        Unfinished,
+        Backlog,
         Playing,
-        Completed
+        Finished
     }
 }
