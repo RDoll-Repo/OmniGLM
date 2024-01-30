@@ -172,15 +172,18 @@ Status 200 OK
 **Response Body:**
 ```json
 {
-    "id": "02d1d49a-ba59-4baf-8668-ed74edb5543d",
-    "title": "Persona 3 FES",
-    "status": "finished",
-    "console": "Sony Playstation 2",
-    "format": "collectors",
-    "genre": "Japanese RPG",
-    "length": 80,
-    "dateAdded": "2012-03-03T01:00:00Z",
-    "dateCompleted": "2012-08-19T01:00:00Z"
+    "meta": {},
+    "data": {
+        "id": "02d1d49a-ba59-4baf-8668-ed74edb5543d",
+        "title": "Persona 3 FES",
+        "status": "finished",
+        "console": "Sony Playstation 2",
+        "format": "collectors",
+        "genre": "Japanese RPG",
+        "length": 80,
+        "dateAdded": "2012-03-03T01:00:00Z",
+        "dateCompleted": "2012-08-19T01:00:00Z"
+    }
 }
 ```
 

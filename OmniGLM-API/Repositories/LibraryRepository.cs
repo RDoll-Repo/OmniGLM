@@ -22,9 +22,9 @@ namespace OmniGLM_API.Repositories
         public async Task<IEnumerable<Game>> GetLibrary()
         {
             var results = await _efCoreService.QueryableWhere(Game => true)
-            .Include(g => g.Genre)
-            .Include(g => g.Console)
-            .ToListAsync();
+                .Include(g => g.Genre)
+                .Include(g => g.Console)
+                .ToListAsync();
 
             return results;
         }
