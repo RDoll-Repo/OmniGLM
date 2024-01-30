@@ -163,3 +163,25 @@ Status 200 OK
 
 **Error Codes:** None
 
+### Fetch Individual Game
+---
+`GET /library/{id}`
+
+**Request Body:** None
+
+**Response Body:**
+```json
+{
+    "id": "02d1d49a-ba59-4baf-8668-ed74edb5543d",
+    "title": "Persona 3 FES",
+    "status": "finished",
+    "console": "Sony Playstation 2",
+    "format": "collectors",
+    "genre": "Japanese RPG",
+    "length": 80,
+    "dateAdded": "2012-03-03T01:00:00Z",
+    "dateCompleted": "2012-08-19T01:00:00Z"
+}
+```
+
+`200 OK - The fetched game`
