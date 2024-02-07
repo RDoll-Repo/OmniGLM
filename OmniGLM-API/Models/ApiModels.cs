@@ -9,3 +9,11 @@ public class ApiResponse<TMeta, TData> where TMeta: new()
 }
 
 public class ApiResponse<TData> : ApiResponse<Empty, TData> {}
+
+public class ApiPayload<TMeta, TData>
+{
+    public TMeta Meta { get; set; }
+    public TData Data { get; set; }
+}
+
+public class ApiPayload<TData> : ApiPayload<Empty, TData> {}
