@@ -6,5 +6,38 @@ namespace OmniGLM_API.Models
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime? UpdatedAt { get; set; }
+
+        public Genre() {}
+
+        public Genre(CreateGenrePayload p)
+        {
+            Id = Guid.NewGuid();
+            Title = p.Title;
+            CreatedAt = p.CreatedAt ?? DateTime.Now;
+        }
+    }
+
+    public class CreateGenrePayload
+    {
+        public string Title { get; set; }
+        public DateTime? CreatedAt { get; set; }
+    }
+
+    public class GenreViewModel
+    {
+        public Guid Id { get; }
+        public string Title { get; }
+        public DateTime CreatedAt { get; }
+        public DateTime? UpdatedAt { get; }
+
+        public GenreViewModel(Genre g)
+        {
+            Id = g.Id;
+            Title = g.Title;
+            CreatedAt = g.CreatedAt;
+            UpdatedAt = g.UpdatedAt;
+        }
     }
 }
