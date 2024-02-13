@@ -24,12 +24,11 @@ POST /genres
 **Response Body:**
 ```json
 {
-    "meta": {
-        "count": 3
-    },
+    "meta": {},
     "data": {
         "id": "8abf368b-34b4-4766-b3c2-1446e6d63586",
-        "title": "Fighting"
+        "title": "Fighting",
+        "createdAt": ""
     }
 }
 ```

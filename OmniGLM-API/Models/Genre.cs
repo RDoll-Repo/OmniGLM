@@ -6,7 +6,7 @@ namespace OmniGLM_API.Models
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
 
         public Genre() {}
@@ -15,7 +15,7 @@ namespace OmniGLM_API.Models
         {
             Id = Guid.NewGuid();
             Title = p.Title;
-            CreatedAt = p.CreatedAt ?? DateTime.Now;
+            CreatedAt = p.CreatedAt ?? DateTime.UtcNow;
         }
     }
 
