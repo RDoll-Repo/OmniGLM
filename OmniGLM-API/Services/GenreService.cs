@@ -6,6 +6,7 @@ namespace OmniGLM_API.Services;
 public interface IGenreService
 {
     Task<ApiResponse<GenreViewModel>> CreateGenre(CreateGenrePayload p);
+    Task<ApiResponse<SearchGenresViewModel>> SearchGenres();
 }
 
 public class GenreService : IGenreService
@@ -27,5 +28,17 @@ public class GenreService : IGenreService
         };
 
         return result;
+    }
+
+    public async Task<ApiResponse<SearchGenresViewModel>> SearchGenres()
+    {
+        var results = await _repo.SearchGenres();
+
+        var response = new ApiResponse<SearchGenresViewModel>
+        {
+            Data = new SearchGenresViewModel(results)
+        };
+
+        return response;
     }
 }

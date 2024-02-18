@@ -24,4 +24,13 @@ public class GenreController : ControllerBase
 
         return Created("", result);
     }
+
+    // TODO: Replace with search
+    [HttpGet]
+    public async Task<ActionResult<ApiResponse<SearchGenresViewModel>>> SearchGenres()
+    {
+        var results = await _service.SearchGenres();
+
+        return results;
+    }
 }
