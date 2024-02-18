@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using OmniGLM_API.Models;
 using OmniGLM_API.Repositories;
 
@@ -8,6 +9,10 @@ public interface IGenreService
     Task<ApiResponse<GenreViewModel>> CreateGenreAsync(CreateGenrePayload p);
     Task<ApiResponse<SearchGenresViewModel>> SearchGenresAsync();
     Task<ApiResponse<GenreViewModel>> FetchGenreAsync(Guid id);
+    Task<ApiResponse<GenreViewModel>> UpdateGenreAsync(
+        Guid id,
+        UpdateGenrePayload p
+    );
 }
 
 public class GenreService : IGenreService
@@ -46,6 +51,26 @@ public class GenreService : IGenreService
     public async Task<ApiResponse<GenreViewModel>> FetchGenreAsync(Guid id)
     {
         var result = await _repo.FetchAsync(id);
+
+        var response = new ApiResponse<GenreViewModel>
+        {
+            Data = new GenreViewModel(result)
+        };
+
+        return response;
+    }
+
+    public async Task<ApiResponse<GenreViewModel>> UpdateGenreAsync(
+        Guid id,
+        UpdateGenrePayload p
+    )
+    {
+        // TODO: Replace with proper not found
+        var genre = await _repo.FetchAsync(id) ?? throw new Exception("Not found");
+
+        genre.UpdateGenre(p);
+
+        var result = await _repo.UpdateAsync(genre);
 
         var response = new ApiResponse<GenreViewModel>
         {

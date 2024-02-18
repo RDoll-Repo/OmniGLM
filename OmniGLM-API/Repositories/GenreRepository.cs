@@ -9,6 +9,7 @@ public interface IGenreRepository
     Task<Genre> CreateAsync(Genre g);
     Task<List<Genre>> SearchAsync();
     Task<Genre?> FetchAsync(Guid id);
+    Task<Genre> UpdateAsync(Genre g);
 }
 
 public class GenreRepository : IGenreRepository
@@ -40,6 +41,13 @@ public class GenreRepository : IGenreRepository
     public async Task<Genre?> FetchAsync(Guid id)
     {
         var result = await _efCoreService.FetchAsync(id);
+
+        return result;
+    }
+
+    public async Task<Genre> UpdateAsync(Genre g)
+    {
+        var result = await _efCoreService.UpdateAsync(g);
 
         return result;
     }

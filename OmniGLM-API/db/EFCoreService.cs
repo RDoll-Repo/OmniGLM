@@ -14,6 +14,7 @@ namespace OmniGLM_API.db
         Task<TEntity?> FetchAsync(TIndex id);
         IQueryable<TEntity> QueryableWhere(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> CreateAsync(TEntity entity);
+        Task<TEntity> UpdateAsync(TEntity entity);
     }
 
     public class EFCoreService<TEntity, TIndex> : IEFCoreService<TEntity, TIndex> 
@@ -51,6 +52,15 @@ namespace OmniGLM_API.db
             await _context.SaveChangesAsync();
 
             return created.Entity;
+        }
+
+        public async Task<TEntity> UpdateAsync(TEntity entity)
+        {
+            var updated = _context.Update(entity);
+
+            await _context.SaveChangesAsync();
+
+            return updated.Entity;
         }
     }
 }

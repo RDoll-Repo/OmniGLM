@@ -18,9 +18,8 @@ namespace OmniGLM_API.Models
             CreatedAt = p.CreatedAt ?? DateTime.UtcNow;
         }
 
-        public Genre(Guid id, UpdateGenrePayload p)
+        public void UpdateGenre(UpdateGenrePayload p)
         {
-            Id = id;
             Title = p.Title;
             CreatedAt = p.CreatedAt;
             UpdatedAt = DateTime.UtcNow;

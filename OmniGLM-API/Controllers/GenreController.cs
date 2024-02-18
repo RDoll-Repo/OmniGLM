@@ -41,4 +41,15 @@ public class GenreController : ControllerBase
 
         return result;
     }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<ApiResponse<GenreViewModel>>> UpdateGenre(
+        Guid id, 
+        ApiPayload<UpdateGenrePayload> p
+    )
+    {
+        var result = await _service.UpdateGenreAsync(id, p.Data);
+
+        return result;
+    }
 }
