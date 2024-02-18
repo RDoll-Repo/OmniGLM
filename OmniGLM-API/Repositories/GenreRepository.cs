@@ -10,6 +10,7 @@ public interface IGenreRepository
     Task<List<Genre>> SearchAsync();
     Task<Genre?> FetchAsync(Guid id);
     Task<Genre> UpdateAsync(Genre g);
+    Task DeleteAsync(Genre g);
 }
 
 public class GenreRepository : IGenreRepository
@@ -50,5 +51,10 @@ public class GenreRepository : IGenreRepository
         var result = await _efCoreService.UpdateAsync(g);
 
         return result;
+    }
+
+    public async Task DeleteAsync(Genre g)
+    {
+        await _efCoreService.DeleteAsync(g);
     }
 }

@@ -13,6 +13,7 @@ public interface IGenreService
         Guid id,
         UpdateGenrePayload p
     );
+    Task DeleteGenreAsync(Guid id);
 }
 
 public class GenreService : IGenreService
@@ -78,5 +79,13 @@ public class GenreService : IGenreService
         };
 
         return response;
+    }
+
+    public async Task DeleteGenreAsync(Guid id)
+    {
+        // TODO: Replace with proper not found
+        var genre = await _repo.FetchAsync(id) ?? throw new Exception("Not found");
+
+        await _repo.DeleteAsync(genre);
     }
 }

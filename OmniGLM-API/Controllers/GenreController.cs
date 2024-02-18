@@ -52,4 +52,12 @@ public class GenreController : ControllerBase
 
         return result;
     }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteGenre(Guid id)
+    {
+        await _service.DeleteGenreAsync(id);
+
+        return NoContent();
+    }
 }

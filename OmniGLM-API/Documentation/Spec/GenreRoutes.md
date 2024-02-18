@@ -75,7 +75,7 @@ GET /genres
 
 `200 OK - The search results`
 
-### Fetch Genres
+### Fetch Genre
 ---
 ```
 GET /genres/{id}
@@ -129,3 +129,15 @@ PUT /genres/{id}
 ```
 
 `200 OK - The updated genre`
+
+### Delete Genre
+---
+```
+DELETE /genres/{id}
+```
+
+**Request Body:** NONE
+
+**Response Body:** NONE
+
+`204 No Content - The genre was deleted`
