@@ -20,7 +20,7 @@ public class GenreController : ControllerBase
         ApiPayload<CreateGenrePayload> p
     )
     {
-        var result = await _service.CreateGenre(p.Data);
+        var result = await _service.CreateGenreAsync(p.Data);
 
         return Created("", result);
     }
@@ -29,8 +29,16 @@ public class GenreController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<ApiResponse<SearchGenresViewModel>>> SearchGenres()
     {
-        var results = await _service.SearchGenres();
+        var results = await _service.SearchGenresAsync();
 
         return results;
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<ApiResponse<GenreViewModel>>> FetchGenre(Guid id)
+    {
+        var result = await _service.FetchGenreAsync(id);
+
+        return result;
     }
 }

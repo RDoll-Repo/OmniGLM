@@ -6,8 +6,9 @@ namespace OmniGLM_API.Repositories;
 
 public interface IGenreRepository
 {
-    Task<Genre> CreateGenre(Genre g);
-    Task<List<Genre>> SearchGenres();
+    Task<Genre> CreateAsync(Genre g);
+    Task<List<Genre>> SearchAsync();
+    Task<Genre?> FetchAsync(Guid id);
 }
 
 public class GenreRepository : IGenreRepository
@@ -19,17 +20,27 @@ public class GenreRepository : IGenreRepository
         _efCoreService = efCoreService;
     }
 
-    public async Task<Genre> CreateGenre(Genre g)
+    public async Task<Genre> CreateAsync(Genre g)
     {
         var result = await _efCoreService.CreateAsync(g);
 
         return result;
     }
 
-    public async Task<List<Genre>> SearchGenres()
+    public async Task<List<Genre>> SearchAsync()
     {
+        // TODO: Use an actual expression
         var query = _efCoreService.QueryableWhere(g => true);
 
-        return await query.ToListAsync();
+        var result = await query.ToListAsync();
+
+        return result;
+    }
+
+    public async Task<Genre?> FetchAsync(Guid id)
+    {
+        var result = await _efCoreService.FetchAsync(id);
+
+        return result;
     }
 }

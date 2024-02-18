@@ -5,8 +5,9 @@ namespace OmniGLM_API.Services;
 
 public interface IGenreService
 {
-    Task<ApiResponse<GenreViewModel>> CreateGenre(CreateGenrePayload p);
-    Task<ApiResponse<SearchGenresViewModel>> SearchGenres();
+    Task<ApiResponse<GenreViewModel>> CreateGenreAsync(CreateGenrePayload p);
+    Task<ApiResponse<SearchGenresViewModel>> SearchGenresAsync();
+    Task<ApiResponse<GenreViewModel>> FetchGenreAsync(Guid id);
 }
 
 public class GenreService : IGenreService
@@ -18,9 +19,9 @@ public class GenreService : IGenreService
         _repo = repo;
     }
 
-    public async Task<ApiResponse<GenreViewModel>> CreateGenre(CreateGenrePayload p)
+    public async Task<ApiResponse<GenreViewModel>> CreateGenreAsync(CreateGenrePayload p)
     {
-        var newGenre = await _repo.CreateGenre(new Genre(p));
+        var newGenre = await _repo.CreateAsync(new Genre(p));
 
         var result = new ApiResponse<GenreViewModel>
         {
@@ -30,13 +31,25 @@ public class GenreService : IGenreService
         return result;
     }
 
-    public async Task<ApiResponse<SearchGenresViewModel>> SearchGenres()
+    public async Task<ApiResponse<SearchGenresViewModel>> SearchGenresAsync()
     {
-        var results = await _repo.SearchGenres();
+        var results = await _repo.SearchAsync();
 
         var response = new ApiResponse<SearchGenresViewModel>
         {
             Data = new SearchGenresViewModel(results)
+        };
+
+        return response;
+    }
+
+    public async Task<ApiResponse<GenreViewModel>> FetchGenreAsync(Guid id)
+    {
+        var result = await _repo.FetchAsync(id);
+
+        var response = new ApiResponse<GenreViewModel>
+        {
+            Data = new GenreViewModel(result)
         };
 
         return response;
