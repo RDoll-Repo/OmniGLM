@@ -19,7 +19,7 @@ namespace OmniGLM_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Game>>> GetLibrary()
         {
-            var result =  await _service.GetLibrary();
+            var result =  await _service.GetLibraryAsync();
 
             return Ok(result);
         }
@@ -27,7 +27,7 @@ namespace OmniGLM_API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ApiResponse<GameViewModel>>> FetchGame(Guid id)
         {
-            var result = await _service.FetchGame(id);
+            var result = await _service.FetchGameAsync(id);
 
             return Ok(result);
         }

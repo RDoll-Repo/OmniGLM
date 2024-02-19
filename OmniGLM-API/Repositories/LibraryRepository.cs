@@ -6,8 +6,8 @@ namespace OmniGLM_API.Repositories
 {
     public interface ILibraryRepository
     {
-        Task<IEnumerable<Game>> GetLibrary();
-        Task<Game?> FetchGame(Guid id);
+        Task<IEnumerable<Game>> SearchAsync();
+        Task<Game?> FetchAsync(Guid id);
     }
 
     public class LibraryRepository : ILibraryRepository
@@ -19,7 +19,7 @@ namespace OmniGLM_API.Repositories
             _efCoreService = efCoreService;
         }
 
-        public async Task<IEnumerable<Game>> GetLibrary()
+        public async Task<IEnumerable<Game>> SearchAsync()
         {
             var results = await _efCoreService.QueryableWhere(Game => true)
                 .Include(g => g.Genre)
@@ -29,7 +29,7 @@ namespace OmniGLM_API.Repositories
             return results;
         }
 
-        public async Task<Game?> FetchGame(Guid id)
+        public async Task<Game?> FetchAsync(Guid id)
         {
             var result = await _efCoreService.QueryableWhere(g => g.Id == id)
                 .Include(g => g.Genre)
