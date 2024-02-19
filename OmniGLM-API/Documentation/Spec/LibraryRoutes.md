@@ -2,6 +2,8 @@
 
 This section of the spec outlines controller routes related to the games in the library as a resoure.
 
+[Back to Main](APISpec.md)
+
 ## Endpoints
 
 ### Get Library (To be deprecated after Search Implementation):
@@ -14,6 +16,7 @@ GET /library
 
 **Response Body:**
 ```json
+200 OK - The search results
 {
     "meta": {
         "count": 3
@@ -76,7 +79,6 @@ GET /library
 }
 ```
 
-**Error Codes:** None
 
 ### Fetch Individual Game
 ---
@@ -86,6 +88,7 @@ GET /library
 
 **Response Body:**
 ```json
+200 OK - The fetched game
 {
     "meta": {},
     "data": {
@@ -101,5 +104,3 @@ GET /library
     }
 }
 ```
-
-`200 OK - The fetched game`

@@ -1,15 +1,15 @@
 # Genre Routes
 
-This section of the spec outlines controller routes related to genres as a resoure.
+This section of the spec outlines controller routes related to genres as a resource.
 
+[Back to Main](APISpec.md)
 
 ## Endpoints
 
+
 ### Create Genre 
 ---
-```
-POST /genres
-```
+`POST /genres`
 
 **Request Body:**
 ```json
@@ -23,6 +23,7 @@ POST /genres
 
 **Response Body:**
 ```json
+201 Created - The created genre
 {
     "meta": {},
     "data": {
@@ -34,18 +35,16 @@ POST /genres
 }
 ```
 
-`201 Created - The created genre`
 
 ### Get Genres (To be deprecated and replaced with search)
 ---
-```
-GET /genres
-```
+`GET /genres`
 
 **Request Body:** NONE
 
 **Response Body:**
 ```json
+200 OK - The search results
 {
     "meta": {},
     "data": {
@@ -73,18 +72,16 @@ GET /genres
 }
 ```
 
-`200 OK - The search results`
 
 ### Fetch Genre
 ---
-```
-GET /genres/{id}
-```
+`GET /genres/{id}`
 
 **Request Body:** NONE
 
 **Response Body:**
 ```json
+200 OK - The fetched genre
 {
     "meta": {},
     "data": {
@@ -96,13 +93,10 @@ GET /genres/{id}
 }
 ```
 
-`200 OK - The fetched genre`
 
 ### Update Genre
 ---
-```
-PUT /genres/{id}
-```
+`PUT /genres/{id}`
 
 **Request Body:** 
 ```json
@@ -117,6 +111,7 @@ PUT /genres/{id}
 
 **Response Body:**
 ```json
+200 OK - The updated genre
 {
     "meta": {},
     "data": {
@@ -128,16 +123,14 @@ PUT /genres/{id}
 }
 ```
 
-`200 OK - The updated genre`
 
 ### Delete Genre
 ---
-```
-DELETE /genres/{id}
-```
+`DELETE /genres/{id}`
 
 **Request Body:** NONE
 
-**Response Body:** NONE
-
-`204 No Content - The genre was deleted`
+**Response Body:**
+```json
+204 No Content - The genre was deleted
+```
