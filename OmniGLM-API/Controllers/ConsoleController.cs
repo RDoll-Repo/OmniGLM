@@ -33,4 +33,12 @@ public class ConsoleController : ControllerBase
 
         return results;
     }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<ApiResponse<ConsoleViewModel>>> FetchConsole(Guid id)
+    {
+        var result = await _service.FetchConsoleAsync(id);
+
+        return result;
+    }
 }

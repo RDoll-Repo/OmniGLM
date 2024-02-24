@@ -71,3 +71,24 @@ This section of the spec outlines controller routes related to consoles as a res
     }
 }
 ```
+
+
+### Fetch Console
+---
+`GET /consoles/{id}`
+
+**Request Body:** NONE
+
+**Response Body:**
+```json
+200 OK - The fetched console
+{
+    "meta": {},
+    "data": {
+        "id": "bd7859c9-7d60-430d-885b-996a9ce5335e",
+        "title": "Playstation 4",
+        "createdAt": "2024-02-08T10:58:35.330683Z",
+        "updatedAt": null
+    }
+}
+```

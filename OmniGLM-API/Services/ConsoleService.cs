@@ -8,6 +8,7 @@ public interface IConsoleService
 {
     Task<ApiResponse<ConsoleViewModel>> CreateConsoleAsync(CreateConsolePayload p);
     Task<ApiResponse<SearchConsolesViewModel>> SearchConsolesAsync();
+    Task<ApiResponse<ConsoleViewModel>> FetchConsoleAsync(Guid id);
 }
 
 public class ConsoleService : IConsoleService
@@ -38,6 +39,18 @@ public class ConsoleService : IConsoleService
         var response = new ApiResponse<SearchConsolesViewModel>
         {
             Data = new SearchConsolesViewModel(results)
+        };
+
+        return response;
+    }
+
+    public async Task<ApiResponse<ConsoleViewModel>> FetchConsoleAsync(Guid id)
+    {
+        var result = await _repo.FetchAsync(id);
+
+        var response = new ApiResponse<ConsoleViewModel>
+        {
+            Data = new ConsoleViewModel(result)
         };
 
         return response;

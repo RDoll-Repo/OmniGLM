@@ -8,6 +8,7 @@ public interface IConsoleRepository
 {
     Task<Console> CreateAsync(Console c);
     Task<List<Console>> SearchAsync();
+    Task<Console?> FetchAsync(Guid id);
 }
 
 public class ConsoleRepository : IConsoleRepository
@@ -34,5 +35,12 @@ public class ConsoleRepository : IConsoleRepository
         var results = await query.ToListAsync();
 
         return results;
+    }
+
+    public async Task<Console?> FetchAsync(Guid id)
+    {
+        var result = await _efCoreService.FetchAsync(id);
+
+        return result;
     }
 }
