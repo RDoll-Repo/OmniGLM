@@ -26,14 +26,14 @@ public class GenreService : IGenreService
 
     public async Task<ApiResponse<GenreViewModel>> CreateGenreAsync(CreateGenrePayload p)
     {
-        var newGenre = await _repo.CreateAsync(new Genre(p));
+        var result = await _repo.CreateAsync(new Genre(p));
 
-        var result = new ApiResponse<GenreViewModel>
+        var response = new ApiResponse<GenreViewModel>
         {
-            Data = new GenreViewModel(newGenre)
+            Data = new GenreViewModel(result)
         };
 
-        return result;
+        return response;
     }
 
     public async Task<ApiResponse<SearchGenresViewModel>> SearchGenresAsync()

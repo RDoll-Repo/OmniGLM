@@ -34,9 +34,9 @@ public class GenreRepository : IGenreRepository
         // TODO: Use an actual expression
         var query = _efCoreService.QueryableWhere(g => true);
 
-        var result = await query.ToListAsync();
+        var results = await query.ToListAsync();
 
-        return result;
+        return results;
     }
 
     public async Task<Genre?> FetchAsync(Guid id)

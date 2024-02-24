@@ -8,6 +8,7 @@ namespace OmniGLM_API.Setup
         {
             builder.Services.AddScoped<ILibraryRepository, LibraryRepository>();
             builder.Services.AddScoped<IGenreRepository, GenreRepository>();
+            builder.Services.AddScoped<IConsoleRepository, ConsoleRepository>();
         }
     }
 }
