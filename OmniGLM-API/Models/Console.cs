@@ -17,12 +17,25 @@ public class Console : IEntity<Guid>
         Title = p.Title;
         CreatedAt = p.CreatedAt ?? DateTime.UtcNow;
     }
+
+    public void UpdateConsole(UpdateConsolePayload p)
+    {
+        Title = p.Title;
+        CreatedAt = p.CreatedAt;
+        UpdatedAt = DateTime.UtcNow;
+    }
 }
 
 public class CreateConsolePayload
 {
     public string Title { get; set; }
     public DateTime? CreatedAt { get; set; }
+}
+
+public class UpdateConsolePayload
+{
+    public string Title { get; set; }
+    public DateTime CreatedAt { get; set; }
 }
 
 public class ConsoleViewModel

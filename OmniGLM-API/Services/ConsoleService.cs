@@ -9,6 +9,10 @@ public interface IConsoleService
     Task<ApiResponse<ConsoleViewModel>> CreateConsoleAsync(CreateConsolePayload p);
     Task<ApiResponse<SearchConsolesViewModel>> SearchConsolesAsync();
     Task<ApiResponse<ConsoleViewModel>> FetchConsoleAsync(Guid id);
+    Task<ApiResponse<ConsoleViewModel>> UpdateConsoleAsync(
+        Guid id,
+        UpdateConsolePayload p
+    );
 }
 
 public class ConsoleService : IConsoleService
@@ -47,6 +51,26 @@ public class ConsoleService : IConsoleService
     public async Task<ApiResponse<ConsoleViewModel>> FetchConsoleAsync(Guid id)
     {
         var result = await _repo.FetchAsync(id);
+
+        var response = new ApiResponse<ConsoleViewModel>
+        {
+            Data = new ConsoleViewModel(result)
+        };
+
+        return response;
+    }
+
+    public async Task<ApiResponse<ConsoleViewModel>> UpdateConsoleAsync(
+        Guid id,
+        UpdateConsolePayload p
+    )
+    {
+        // TODO: Replace with proper not found
+        var console = await _repo.FetchAsync(id) ?? throw new Exception("Not found");
+
+        console.UpdateConsole(p);
+
+        var result = await _repo.UpdateAsync(console);
 
         var response = new ApiResponse<ConsoleViewModel>
         {

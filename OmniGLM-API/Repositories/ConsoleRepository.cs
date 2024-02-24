@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using OmniGLM_API.db;
+using OmniGLM_API.Models;
 using Console = OmniGLM_API.Models.Console;
 
 namespace OmniGLM_API.Repositories;
@@ -9,6 +10,7 @@ public interface IConsoleRepository
     Task<Console> CreateAsync(Console c);
     Task<List<Console>> SearchAsync();
     Task<Console?> FetchAsync(Guid id);
+    Task<Console> UpdateAsync(Console g);
 }
 
 public class ConsoleRepository : IConsoleRepository
@@ -40,6 +42,13 @@ public class ConsoleRepository : IConsoleRepository
     public async Task<Console?> FetchAsync(Guid id)
     {
         var result = await _efCoreService.FetchAsync(id);
+
+        return result;
+    }
+
+    public async Task<Console> UpdateAsync(Console g)
+    {
+        var result = await _efCoreService.UpdateAsync(g);
 
         return result;
     }

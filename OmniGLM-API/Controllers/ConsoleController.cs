@@ -41,4 +41,15 @@ public class ConsoleController : ControllerBase
 
         return result;
     }
+
+    [HttpPut("{id}")]
+    public async Task<ActionResult<ApiResponse<ConsoleViewModel>>> UpdateConsole(
+        Guid id,
+        ApiPayload<UpdateConsolePayload> p
+    )
+    {
+        var result = await _service.UpdateConsoleAsync(id, p.Data);
+
+        return result;
+    }
 }

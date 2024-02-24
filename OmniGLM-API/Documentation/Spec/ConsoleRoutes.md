@@ -92,3 +92,33 @@ This section of the spec outlines controller routes related to consoles as a res
     }
 }
 ```
+
+
+### Update Console
+---
+`PUT /consoles/{id}`
+
+**Request Body:** 
+```json
+{
+    "meta": {},
+    "data": {
+        "title": "Gameboy Advance",
+        "createdAt": "2024-02-08T10:58:35.330683Z"
+    }
+}
+```
+
+**Response Body:**
+```json
+200 OK - The updated console
+{
+    "meta": {},
+    "data": {
+        "id": "bd7859c9-7d60-430d-885b-996a9ce5335e",
+        "title": "Gameboy Advance",
+        "createdAt": "2024-02-08T10:58:35.330683Z",
+        "updatedAt": "2024-03-09T10:58:35.330683Z"
+    }
+}
+```
