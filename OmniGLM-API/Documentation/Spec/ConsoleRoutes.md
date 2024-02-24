@@ -122,3 +122,15 @@ This section of the spec outlines controller routes related to consoles as a res
     }
 }
 ```
+
+
+### Delete Console
+---
+`DELETE /consoles/{id}`
+
+**Request Body:** NONE
+
+**Response Body:**
+```json
+204 No Content - The console was deleted
+```

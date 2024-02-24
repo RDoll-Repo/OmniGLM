@@ -13,6 +13,7 @@ public interface IConsoleService
         Guid id,
         UpdateConsolePayload p
     );
+    Task DeleteConsoleAsync(Guid id);
 }
 
 public class ConsoleService : IConsoleService
@@ -78,5 +79,13 @@ public class ConsoleService : IConsoleService
         };
 
         return response;
+    }
+
+    public async Task DeleteConsoleAsync(Guid id)
+    {
+        // TODO: Replace with proper not found
+        var console = await _repo.FetchAsync(id) ?? throw new Exception("Not found");
+
+        await _repo.DeleteAsync(console);
     }
 }

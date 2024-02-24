@@ -52,4 +52,12 @@ public class ConsoleController : ControllerBase
 
         return result;
     }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteConsole(Guid id)
+    {
+        await _service.DeleteConsoleAsync(id);
+
+        return NoContent();
+    }
 }
