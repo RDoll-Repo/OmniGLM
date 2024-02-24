@@ -91,3 +91,5 @@ Given the eventual size of this API, it is appropriate to divide what the bulk o
 [Library](LibraryRoutes.md)
 
 [Genres](GenreRoutes.md)
+
+[Consoles](ConsoleRoutes.md)

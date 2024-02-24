@@ -10,6 +10,7 @@ namespace OmniGLM_API.Setup
             builder.Services.AddScoped(typeof(IEFCoreService<,>), typeof(EFCoreService<,>));
             builder.Services.AddScoped<ILibraryService, LibraryService>();
             builder.Services.AddScoped<IGenreService, GenreService>();
+            builder.Services.AddScoped<IConsoleService, ConsoleService>();
         }
     }
 }
