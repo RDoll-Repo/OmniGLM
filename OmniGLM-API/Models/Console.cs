@@ -40,3 +40,13 @@ public class ConsoleViewModel
         UpdatedAt = c.UpdatedAt;
     }
 }
+
+public class SearchConsolesViewModel
+{
+    public IEnumerable<ConsoleViewModel> Consoles { get; set; }
+
+    public SearchConsolesViewModel(IEnumerable<Console> consoles)
+    {
+        Consoles = consoles.Select(c => new ConsoleViewModel(c));
+    }
+}

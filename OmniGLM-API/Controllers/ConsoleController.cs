@@ -24,4 +24,13 @@ public class ConsoleController : ControllerBase
 
         return Created("", result);
     }
+
+    // TODO: Replace with Search
+    [HttpGet]
+    public async Task<ActionResult<ApiResponse<SearchConsolesViewModel>>> SearchConsoles()
+    {
+        var results = await _service.SearchConsolesAsync();
+
+        return results;
+    }
 }

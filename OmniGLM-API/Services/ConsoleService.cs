@@ -7,6 +7,7 @@ namespace OmniGLM_API.Services;
 public interface IConsoleService
 {
     Task<ApiResponse<ConsoleViewModel>> CreateConsoleAsync(CreateConsolePayload p);
+    Task<ApiResponse<SearchConsolesViewModel>> SearchConsolesAsync();
 }
 
 public class ConsoleService : IConsoleService
@@ -25,6 +26,18 @@ public class ConsoleService : IConsoleService
         var response = new ApiResponse<ConsoleViewModel>
         {
             Data = new ConsoleViewModel(result)
+        };
+
+        return response;
+    }
+
+    public async Task<ApiResponse<SearchConsolesViewModel>> SearchConsolesAsync()
+    {
+        var results = await _repo.SearchAsync();
+
+        var response = new ApiResponse<SearchConsolesViewModel>
+        {
+            Data = new SearchConsolesViewModel(results)
         };
 
         return response;
