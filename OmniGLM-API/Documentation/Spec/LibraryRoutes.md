@@ -37,7 +37,8 @@ GET /library
                     "genreName": "Japanese RPG"
                 },
                 "length": 80,
-                "dateAdded": "2012-03-03T01:00:00Z",
+                "createdAt": "2012-03-03T01:00:00Z",
+                "updatedAt": null,
                 "dateCompleted": "2012-08-19T01:00:00Z"
             },
             {
@@ -54,7 +55,8 @@ GET /library
                     "genreName": "Japanese RPG"
                 },
                 "length": 53,
-                "dateAdded": "2022-07-26T01:00:00Z",
+                "createdAt": "2022-07-26T01:00:00Z",
+                "updatedAt": null,
                 "dateCompleted": null
             },
             {
@@ -71,7 +73,8 @@ GET /library
                     "genreName": "Puzzle"
                 },
                 "length": 18,
-                "dateAdded": "2022-07-26T01:00:00Z",
+                "createdAt": "2022-07-26T01:00:00Z",
+                "updatedAt": "2022-09-30T01:00:00Z",
                 "dateCompleted": null
             }
         ]
@@ -99,7 +102,8 @@ GET /library
         "format": "collectors",
         "genre": "Japanese RPG",
         "length": 80,
-        "dateAdded": "2012-03-03T01:00:00Z",
+        "createdAt": "2012-03-03T01:00:00Z",
+        "updatedAt": "2022-09-30T01:00:00Z",
         "dateCompleted": "2012-08-19T01:00:00Z"
     }
 }

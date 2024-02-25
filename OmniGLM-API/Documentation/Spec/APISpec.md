@@ -27,7 +27,8 @@ console_id : GUID (FK Console)
 format : Int (Enum Value)
 genre_id : GUID (FK Genre)
 length : Int
-date_added : DateTime
+created_at : DateTime
+updated_at : DateTime
 date_completed : DateTime
 ```
 
@@ -35,12 +36,16 @@ date_completed : DateTime
 ```
 id : GUID (PK)
 title : String
+created_at : DateTime
+updated_at : DateTime
 ```
 
 ### Console:
 ```
 id : GUID (PK)
 title : String
+created_at : DateTime
+updated_at : DateTime
 ```
 
 ## Data Models
@@ -55,20 +60,25 @@ Console : Console
 Format : Format
 Genre : Genre
 Length : Int
-DateAdded : DateTime
-DateCompleted? : DateTime
+CreatedAt : DateTime
+UpdatedAt : DateTime?
+DateCompleted : DateTime?
 ```
 
 ### Genre:
 ```
 Id : GUID 
 Title : String
+CreatedAt : DateTime
+UpdatedAt : DateTime?
 ```
 
 ### Console:
 ```
 Id : GUID 
 title : String
+CreatedAt : DateTime
+UpdatedAt : DateTime?
 ```
 
 ### Enum Status

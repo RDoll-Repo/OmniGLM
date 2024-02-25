@@ -12,7 +12,8 @@ namespace OmniGLM_API.Models
         public Format Format { get; set; }
         public virtual Genre Genre { get; set; }
         public int Length { get; set; }
-        public DateTime DateAdded { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime? UpdatedAt { get; set; }
         public DateTime? DateCompleted { get; set; }
     }
 
@@ -28,7 +29,8 @@ namespace OmniGLM_API.Models
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Format Format { get; set; }
         public int Length { get; set; }
-        public DateTime DateAdded { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
         public DateTime? DateCompleted { get; set; }
 
         public GameViewModel(Game g)
@@ -39,7 +41,8 @@ namespace OmniGLM_API.Models
             Console = g.Console.Title;
             Format = g.Format;
             Length = g.Length;
-            DateAdded = g.DateAdded;
+            CreatedAt = g.CreatedAt;
+            UpdatedAt = g.UpdatedAt;
             DateCompleted = g.DateCompleted;
         }
     }
