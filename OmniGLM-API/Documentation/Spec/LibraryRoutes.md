@@ -20,12 +20,11 @@ POST /library
     "data": {
         "title": "Baldur's Gate 3",
         "status": "Playing",
-        "console": "Sony Playstation 5",
+        "consoleId": "c4b6474a-a2c5-4e4c-bdd5-5b4a156863ec",
         "format": "Special",
-        "genre": "Western RPG",
+        "genreId": "82a091f6-4dba-47e7-aaa8-e727114796d9",
         "length": 63,
         "createdAt": "2012-03-03T01:00:00Z",
-        "updatedAt": null,
         "dateCompleted": null
     }
 }
