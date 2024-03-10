@@ -6,6 +6,7 @@ namespace OmniGLM_API.Repositories
 {
     public interface ILibraryRepository
     {
+        Task<Game> CreateAsync(Game g);
         Task<IEnumerable<Game>> SearchAsync();
         Task<Game?> FetchAsync(Guid id);
     }
@@ -17,6 +18,13 @@ namespace OmniGLM_API.Repositories
         public LibraryRepository(IEFCoreService<Game, Guid> efCoreService)
         {
             _efCoreService = efCoreService;
+        }
+
+        public async Task<Game> CreateAsync(Game g)
+        {
+            var result = await _efCoreService.CreateAsync(g);
+
+            return result;
         }
 
         public async Task<IEnumerable<Game>> SearchAsync()

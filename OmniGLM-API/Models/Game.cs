@@ -46,6 +46,7 @@ namespace OmniGLM_API.Models
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Format Format { get; set; }
+        public string Genre { get; set; }
         public int Length { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
@@ -59,6 +60,7 @@ namespace OmniGLM_API.Models
             Console = g.Console.Title;
             Format = g.Format;
             Length = g.Length;
+            Genre = g.Genre.Title;
             CreatedAt = g.CreatedAt;
             UpdatedAt = g.UpdatedAt;
             DateCompleted = g.DateCompleted;

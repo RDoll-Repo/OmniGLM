@@ -5,6 +5,7 @@ namespace OmniGLM_API.Services
 {
     public interface ILibraryService
     {
+        Task<ApiResponse<GameViewModel>> CreateGameAsync(CreateGamePayload p);
         Task<IEnumerable<Game>> GetLibraryAsync();
         Task<ApiResponse<GameViewModel>> FetchGameAsync(Guid id);
     }
@@ -16,6 +17,21 @@ namespace OmniGLM_API.Services
         public LibraryService(ILibraryRepository repo)
         {
             _repo = repo;
+        }
+
+        public async Task<ApiResponse<GameViewModel>> CreateGameAsync(CreateGamePayload p)
+        {
+            var result = await _repo.CreateAsync(new Game(p));
+
+            // TODO: Find a better way to do this
+            var entity = await _repo.FetchAsync(result.Id);
+
+            var response = new ApiResponse<GameViewModel>
+            {
+                Data = new GameViewModel(entity)
+            };
+
+            return response;
         }
 
         public async Task<IEnumerable<Game>> GetLibraryAsync()
