@@ -14,6 +14,16 @@ namespace OmniGLM_API.Controllers
         {
             _service = service;
         }
+
+        [HttpPost]
+        public async Task<ActionResult<ApiResponse<GameViewModel>>> CreateGame(
+            ApiPayload<CreateGamePayload> p
+        )
+        {
+            var result = await _service.CreateGameAsync(p.Data);
+
+            return Created("", result);
+        }
         
         // TODO: Replace with Search
         [HttpGet]

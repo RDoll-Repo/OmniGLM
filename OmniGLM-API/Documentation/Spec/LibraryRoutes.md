@@ -6,6 +6,51 @@ This section of the spec outlines controller routes related to the games in the 
 
 ## Endpoints
 
+
+### Create Game
+---
+```
+POST /library
+```
+
+**Request Body:**
+```json
+{
+    "meta": {},
+    "data": {
+        "title": "Baldur's Gate 3",
+        "status": "Playing",
+        "consoleId": "c4b6474a-a2c5-4e4c-bdd5-5b4a156863ec",
+        "format": "Special",
+        "genreId": "82a091f6-4dba-47e7-aaa8-e727114796d9",
+        "length": 63,
+        "createdAt": "2012-03-03T01:00:00Z",
+        "dateCompleted": null
+    }
+}
+```
+
+**Response Body:**
+```json
+201 Created - The created game
+{
+    "meta": {},
+    "data": {
+        "id": "02d1d49a-ba59-4baf-8668-ed74edb5543d",
+        "title": "Baldur's Gate 3",
+        "status": "Playing",
+        "console": "Sony Playstation 5",
+        "format": "Special",
+        "genre": "Western RPG",
+        "length": 63,
+        "createdAt": "2012-03-03T01:00:00Z",
+        "updatedAt": null,
+        "dateCompleted": null
+    }
+}
+```
+
+
 ### Get Library (To be deprecated after Search Implementation):
 ---
 ```
