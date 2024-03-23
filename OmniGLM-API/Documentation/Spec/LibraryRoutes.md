@@ -153,3 +153,14 @@ GET /library
     }
 }
 ```
+
+### Delete Game
+---
+`DELETE /library/{id}`
+
+**Request Body:** None
+
+**Response Body:** 
+```json
+204 No Content - The game was deleted
+```
