@@ -41,6 +41,14 @@ namespace OmniGLM_API.Controllers
 
             return Ok(result);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteGame(Guid id)
+        {
+            await _service.DeleteGameAsync(id);
+
+            return NoContent();
+        }
     }
 }
 

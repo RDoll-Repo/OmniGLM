@@ -9,6 +9,7 @@ namespace OmniGLM_API.Repositories
         Task<Game> CreateAsync(Game g);
         Task<IEnumerable<Game>> SearchAsync();
         Task<Game?> FetchAsync(Guid id);
+        Task DeleteAsync(Game g);
     }
 
     public class LibraryRepository : ILibraryRepository
@@ -45,6 +46,11 @@ namespace OmniGLM_API.Repositories
                 .FirstOrDefaultAsync();
 
             return result;
+        }
+
+        public async Task DeleteAsync(Game g)
+        {
+            await _efCoreService.DeleteAsync(g);
         }
     }
 }
