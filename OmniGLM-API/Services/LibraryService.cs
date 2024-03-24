@@ -8,6 +8,7 @@ namespace OmniGLM_API.Services
         Task<ApiResponse<GameViewModel>> CreateGameAsync(CreateGamePayload p);
         Task<IEnumerable<Game>> GetLibraryAsync();
         Task<ApiResponse<GameViewModel>> FetchGameAsync(Guid id);
+        Task DeleteGameAsync(Guid id);
     }
 
     public class LibraryService : ILibraryService
@@ -49,6 +50,13 @@ namespace OmniGLM_API.Services
             {
                 Data = new GameViewModel(result)
             };
+        }
+
+        public async Task DeleteGameAsync(Guid id)
+        {
+            var toBeDeleted = await _repo.FetchAsync(id);
+
+            await _repo.DeleteAsync(toBeDeleted);
         }
     }
 }
