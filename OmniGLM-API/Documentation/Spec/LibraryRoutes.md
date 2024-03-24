@@ -9,9 +9,7 @@ This section of the spec outlines controller routes related to the games in the 
 
 ### Create Game
 ---
-```
-POST /library
-```
+`POST /library`
 
 **Request Body:**
 ```json
@@ -19,9 +17,9 @@ POST /library
     "meta": {},
     "data": {
         "title": "Baldur's Gate 3",
-        "status": "Playing",
+        "status": 1,
         "consoleId": "c4b6474a-a2c5-4e4c-bdd5-5b4a156863ec",
-        "format": "Special",
+        "format": 2,
         "genreId": "82a091f6-4dba-47e7-aaa8-e727114796d9",
         "length": 63,
         "createdAt": "2012-03-03T01:00:00Z",
@@ -53,9 +51,7 @@ POST /library
 
 ### Get Library (To be deprecated after Search Implementation):
 ---
-```
-GET /library
-```
+`GET /library`
 
 **Request Body:** None
 
@@ -153,6 +149,49 @@ GET /library
     }
 }
 ```
+
+
+### Update Game
+---
+`PUT /library/{id}`
+
+**Request Body:**
+```json
+{
+    "meta": {},
+    "data": {
+        "title": "Baldur's Gate 3",
+        "status": 2,
+        "consoleId": "c4b6474a-a2c5-4e4c-bdd5-5b4a156863ec",
+        "format": 2,
+        "genreId": "82a091f6-4dba-47e7-aaa8-e727114796d9",
+        "length": 63,
+        "createdAt": "2012-03-03T01:00:00Z",
+        "dateCompleted": "2024-09-12T01:00:00Z"
+    }
+}
+```
+
+**Response Body:**
+```json
+201 Created - The created game
+{
+    "meta": {},
+    "data": {
+        "id": "02d1d49a-ba59-4baf-8668-ed74edb5543d",
+        "title": "Baldur's Gate 3",
+        "status": "Playing",
+        "console": "Sony Playstation 5",
+        "format": "Special",
+        "genre": "Western RPG",
+        "length": 63,
+        "createdAt": "2012-03-03T01:00:00Z",
+        "updatedAt": "2024-09-12T02:00:00Z",
+        "dateCompleted": "2024-09-12T01:00:00Z"
+    }
+}
+```
+
 
 ### Delete Game
 ---
