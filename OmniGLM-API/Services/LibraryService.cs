@@ -6,7 +6,7 @@ namespace OmniGLM_API.Services
     public interface ILibraryService
     {
         Task<ApiResponse<GameViewModel>> CreateGameAsync(CreateGamePayload p);
-        Task<IEnumerable<Game>> GetLibraryAsync();
+        Task<ApiResponse<SearchGamesMeta, SearchGamesData>> GetLibraryAsync();
         Task<ApiResponse<GameViewModel>> FetchGameAsync(Guid id);
         Task DeleteGameAsync(Guid id);
     }
@@ -35,11 +35,20 @@ namespace OmniGLM_API.Services
             return response;
         }
 
-        public async Task<IEnumerable<Game>> GetLibraryAsync()
+        public async Task<ApiResponse<SearchGamesMeta, SearchGamesData>> GetLibraryAsync()
         {
             var results = await _repo.SearchAsync();
 
-            return results;
+            var response = new ApiResponse<SearchGamesMeta, SearchGamesData>
+            {
+                Meta = new SearchGamesMeta
+                {
+                    Count = results.Count()
+                },
+                Data = new SearchGamesData(results)
+            };
+
+            return response;
         }
 
         public async Task<ApiResponse<GameViewModel>> FetchGameAsync(Guid id)

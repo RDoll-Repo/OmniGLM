@@ -27,9 +27,9 @@ namespace OmniGLM_API.Controllers
         
         // TODO: Replace with Search
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Game>>> GetLibrary()
+        public async Task<ActionResult<ApiResponse<SearchGamesMeta, SearchGamesData>>> GetLibrary()
         {
-            var result =  await _service.GetLibraryAsync();
+            var result = await _service.GetLibraryAsync();
 
             return Ok(result);
         }

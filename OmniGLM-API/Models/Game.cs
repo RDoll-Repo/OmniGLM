@@ -85,4 +85,19 @@ namespace OmniGLM_API.Models
         public DateTime? CreatedAt { get; set; }
         public DateTime? DateCompleted { get; set; }
     }
+
+    public class SearchGamesMeta
+    {
+        public int Count { get; set; }
+    }
+
+    public class SearchGamesData
+    {
+        public IEnumerable<GameViewModel> Games { get; set; }
+
+        public SearchGamesData(IEnumerable<Game> games)
+        {
+            Games = games.Select(g => new GameViewModel(g));
+        }
+    }
 }
