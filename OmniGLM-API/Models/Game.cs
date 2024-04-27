@@ -33,6 +33,19 @@ namespace OmniGLM_API.Models
             CreatedAt = p.CreatedAt ?? DateTime.UtcNow;
             DateCompleted = p.DateCompleted;
         }
+
+        public void UpdateGame(UpdateGamePayload p)
+        {
+            Title = p.Title;
+            Status = p.Status;
+            ConsoleId = p.ConsoleId;
+            Format = p.Format;
+            GenreId = p.GenreId;
+            Length = p.Length;
+            CreatedAt = p.CreatedAt;
+            DateCompleted = p.DateCompleted;
+            UpdatedAt = DateTime.UtcNow;
+        }
     }
 
     public class GameViewModel
@@ -83,6 +96,26 @@ namespace OmniGLM_API.Models
         public Guid GenreId { get; set; }
         public int Length { get; set; }
         public DateTime? CreatedAt { get; set; }
+        public DateTime? DateCompleted { get; set; }
+    }
+
+    // Identical to Create for now, but could possibly change
+    public class UpdateGamePayload
+    {
+        // Add validation at later point: IE: cannot have completedAt if backlog
+        public string Title { get; set; }
+        
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [EnumDataType(typeof(Status))]
+        public Status Status { get; set; }
+        public Guid ConsoleId { get; set; }
+
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        [EnumDataType(typeof(Format))]
+        public Format Format { get; set; }
+        public Guid GenreId { get; set; }
+        public int Length { get; set; }
+        public DateTime CreatedAt { get; set; }
         public DateTime? DateCompleted { get; set; }
     }
 

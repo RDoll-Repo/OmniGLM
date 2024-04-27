@@ -42,6 +42,17 @@ namespace OmniGLM_API.Controllers
             return Ok(result);
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ApiResponse<GameViewModel>>> UpdateGame(
+            Guid id, 
+            ApiPayload<UpdateGamePayload> p
+        )
+        {
+            var result = await _service.UpdateGameAsync(id, p.Data);
+
+            return result;
+        }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteGame(Guid id)
         {

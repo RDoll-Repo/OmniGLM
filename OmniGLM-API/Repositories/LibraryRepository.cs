@@ -9,6 +9,7 @@ namespace OmniGLM_API.Repositories
         Task<Game> CreateAsync(Game g);
         Task<IEnumerable<Game>> SearchAsync();
         Task<Game?> FetchAsync(Guid id);
+        Task<Game> UpdateAsync(Game g);
         Task DeleteAsync(Game g);
     }
 
@@ -44,6 +45,13 @@ namespace OmniGLM_API.Repositories
                 .Include(g => g.Genre)
                 .Include(g => g.Console)
                 .FirstOrDefaultAsync();
+
+            return result;
+        }
+
+        public async Task<Game> UpdateAsync(Game g)
+        {
+            var result = await _efCoreService.UpdateAsync(g);
 
             return result;
         }

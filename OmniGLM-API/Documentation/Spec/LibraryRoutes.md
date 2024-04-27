@@ -154,6 +154,51 @@ GET /library
 }
 ```
 
+
+### Update Game
+---
+```
+PUT /library/{id}
+```
+
+**Request Body:**
+```json
+{
+    "meta": {},
+    "data": {
+        "title": "Baldur's Gate 3",
+        "status": "Finished",
+        "consoleId": "c4b6474a-a2c5-4e4c-bdd5-5b4a156863ec",
+        "format": "Special",
+        "genreId": "82a091f6-4dba-47e7-aaa8-e727114796d9",
+        "length": 63,
+        "createdAt": "2012-03-03T01:00:00Z",
+        "dateCompleted": "2015-07-23T01:00:00Z"
+    }
+}
+```
+
+**Response Body:**
+```json
+200 OK - The updated game
+{
+    "meta": {},
+    "data": {
+        "id": "02d1d49a-ba59-4baf-8668-ed74edb5543d",
+        "title": "Baldur's Gate 3",
+        "status": "Finished",
+        "console": "Sony Playstation 5",
+        "format": "Special",
+        "genre": "Western RPG",
+        "length": 63,
+        "createdAt": "2012-03-03T01:00:00Z",
+        "updatedAt": "2015-07-23T01:00:00Z",
+        "dateCompleted": "2015-07-23T01:00:00Z"
+    }
+}
+```
+
+
 ### Delete Game
 ---
 `DELETE /library/{id}`
