@@ -1,6 +1,18 @@
 using OmniGLM_API.Setup;
 
+// TODO: Find a better place for this during end-of-phase cleanup
+var devOrigin = "_devOrigin";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: devOrigin,
+        policy  =>
+        {
+            policy.WithOrigins("http://localhost:5173");
+        });
+});
 
 // Add services to the container.
 
@@ -21,9 +33,11 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseHttpsRedirection();
-
+app.UseCors(devOrigin);
 app.UseAuthorization();
 
 app.MapControllers();
+app.UsePathBase(new PathString("/api"));
+app.UseRouting();
 
 app.Run();
