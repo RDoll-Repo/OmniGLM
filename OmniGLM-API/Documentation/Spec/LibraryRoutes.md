@@ -180,7 +180,7 @@ PUT /library/{id}
 
 **Response Body:**
 ```json
-201 Created - The updated game
+200 OK - The updated game
 {
     "meta": {},
     "data": {
