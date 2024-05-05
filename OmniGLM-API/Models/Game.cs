@@ -55,11 +55,11 @@ namespace OmniGLM_API.Models
         
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Status Status { get; set; }
-        public string Console { get; set; }
+        public ConsoleViewModel Console { get; set; }
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Format Format { get; set; }
-        public string Genre { get; set; }
+        public GenreViewModel Genre { get; set; }
         public int Length { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
@@ -70,10 +70,10 @@ namespace OmniGLM_API.Models
             Id = g.Id;
             Title = g.Title;
             Status = g.Status;
-            Console = g.Console.Title;
+            Console = new ConsoleViewModel(g.Console);
             Format = g.Format;
             Length = g.Length;
-            Genre = g.Genre.Title;
+            Genre = new GenreViewModel(g.Genre);
             CreatedAt = g.CreatedAt;
             UpdatedAt = g.UpdatedAt;
             DateCompleted = g.DateCompleted;
