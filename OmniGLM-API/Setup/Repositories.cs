@@ -1,14 +1,13 @@
 using OmniGLM_API.Repositories;
 
-namespace OmniGLM_API.Setup
+namespace OmniGLM_API.Setup;
+
+public static partial class Setup
 {
-    public static partial class Setup
+    private static void SetupRepositories(WebApplicationBuilder builder)
     {
-        private static void SetupRepositories(WebApplicationBuilder builder)
-        {
-            builder.Services.AddScoped<ILibraryRepository, LibraryRepository>();
-            builder.Services.AddScoped<IGenreRepository, GenreRepository>();
-            builder.Services.AddScoped<IConsoleRepository, ConsoleRepository>();
-        }
+        builder.Services.AddScoped<ILibraryRepository, LibraryRepository>();
+        builder.Services.AddScoped<IGenreRepository, GenreRepository>();
+        builder.Services.AddScoped<IConsoleRepository, ConsoleRepository>();
     }
 }

@@ -1,91 +1,90 @@
 using OmniGLM_API.Models;
 using OmniGLM_API.Repositories;
 
-namespace OmniGLM_API.Services
+namespace OmniGLM_API.Services;
+
+public interface ILibraryService
 {
-    public interface ILibraryService
+    Task<ApiResponse<GameViewModel>> CreateGameAsync(CreateGamePayload p);
+    Task<ApiResponse<SearchGamesMeta, SearchGamesData>> GetLibraryAsync();
+    Task<ApiResponse<GameViewModel>> FetchGameAsync(Guid id);
+    Task<ApiResponse<GameViewModel>> UpdateGameAsync(Guid id, UpdateGamePayload p);
+    Task DeleteGameAsync(Guid id);
+}
+
+public class LibraryService : ILibraryService
+{
+    private readonly ILibraryRepository _repo;
+
+    public LibraryService(ILibraryRepository repo)
     {
-        Task<ApiResponse<GameViewModel>> CreateGameAsync(CreateGamePayload p);
-        Task<ApiResponse<SearchGamesMeta, SearchGamesData>> GetLibraryAsync();
-        Task<ApiResponse<GameViewModel>> FetchGameAsync(Guid id);
-        Task<ApiResponse<GameViewModel>> UpdateGameAsync(Guid id, UpdateGamePayload p);
-        Task DeleteGameAsync(Guid id);
+        _repo = repo;
     }
 
-    public class LibraryService : ILibraryService
+    public async Task<ApiResponse<GameViewModel>> CreateGameAsync(CreateGamePayload p)
     {
-        private readonly ILibraryRepository _repo;
+        var result = await _repo.CreateAsync(new Game(p));
 
-        public LibraryService(ILibraryRepository repo)
+        // TODO: Find a better way to do this
+        var entity = await _repo.FetchAsync(result.Id);
+
+        var response = new ApiResponse<GameViewModel>
         {
-            _repo = repo;
-        }
+            Data = new GameViewModel(entity)
+        };
 
-        public async Task<ApiResponse<GameViewModel>> CreateGameAsync(CreateGamePayload p)
+        return response;
+    }
+
+    public async Task<ApiResponse<SearchGamesMeta, SearchGamesData>> GetLibraryAsync()
+    {
+        var results = await _repo.SearchAsync();
+
+        var response = new ApiResponse<SearchGamesMeta, SearchGamesData>
         {
-            var result = await _repo.CreateAsync(new Game(p));
-
-            // TODO: Find a better way to do this
-            var entity = await _repo.FetchAsync(result.Id);
-
-            var response = new ApiResponse<GameViewModel>
+            Meta = new SearchGamesMeta
             {
-                Data = new GameViewModel(entity)
-            };
+                Count = results.Count()
+            },
+            Data = new SearchGamesData(results)
+        };
 
-            return response;
-        }
+        return response;
+    }
 
-        public async Task<ApiResponse<SearchGamesMeta, SearchGamesData>> GetLibraryAsync()
+    public async Task<ApiResponse<GameViewModel>> FetchGameAsync(Guid id)
+    {
+        var result = await _repo.FetchAsync(id);
+
+        return new ApiResponse<GameViewModel>
         {
-            var results = await _repo.SearchAsync();
+            Data = new GameViewModel(result)
+        };
+    }
 
-            var response = new ApiResponse<SearchGamesMeta, SearchGamesData>
-            {
-                Meta = new SearchGamesMeta
-                {
-                    Count = results.Count()
-                },
-                Data = new SearchGamesData(results)
-            };
+    public async Task<ApiResponse<GameViewModel>> UpdateGameAsync(Guid id, UpdateGamePayload p)
+    {
+        var game = await _repo.FetchAsync(id) ?? throw new Exception("Not found");
 
-            return response;
-        }
+        game.UpdateGame(p);
 
-        public async Task<ApiResponse<GameViewModel>> FetchGameAsync(Guid id)
+        var result = await _repo.UpdateAsync(game);
+
+        // TODO: Find a better way to do this
+        var entity = await _repo.FetchAsync(result.Id);
+
+        var response = new ApiResponse<GameViewModel>
         {
-            var result = await _repo.FetchAsync(id);
+            Data = new GameViewModel(entity)
+        };
 
-            return new ApiResponse<GameViewModel>
-            {
-                Data = new GameViewModel(result)
-            };
-        }
+        return response;
+    }
 
-        public async Task<ApiResponse<GameViewModel>> UpdateGameAsync(Guid id, UpdateGamePayload p)
-        {
-            var game = await _repo.FetchAsync(id) ?? throw new Exception("Not found");
+    public async Task DeleteGameAsync(Guid id)
+    {
+        var toBeDeleted = await _repo.FetchAsync(id);
 
-            game.UpdateGame(p);
-
-            var result = await _repo.UpdateAsync(game);
-
-            // TODO: Find a better way to do this
-            var entity = await _repo.FetchAsync(result.Id);
-
-            var response = new ApiResponse<GameViewModel>
-            {
-                Data = new GameViewModel(entity)
-            };
-
-            return response;
-        }
-
-        public async Task DeleteGameAsync(Guid id)
-        {
-            var toBeDeleted = await _repo.FetchAsync(id);
-
-            await _repo.DeleteAsync(toBeDeleted);
-        }
+        await _repo.DeleteAsync(toBeDeleted);
     }
 }
