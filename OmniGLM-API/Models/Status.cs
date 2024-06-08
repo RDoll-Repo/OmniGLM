@@ -1,9 +1,8 @@
-namespace OmniGLM_API.Models
+namespace OmniGLM_API.Models;
+
+public enum Status
 {
-    public enum Status
-    {
-        Backlog,
-        Playing,
-        Finished
-    }
+    Backlog,
+    Playing,
+    Finished
 }

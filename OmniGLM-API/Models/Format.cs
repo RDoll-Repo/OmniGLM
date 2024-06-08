@@ -1,9 +1,8 @@
-namespace OmniGLM_API.Models
+namespace OmniGLM_API.Models;
+
+public enum Format
 {
-    public enum Format
-    {
-        Physical,
-        Digital,
-        Special
-    }
+    Physical,
+    Digital,
+    Special
 }
