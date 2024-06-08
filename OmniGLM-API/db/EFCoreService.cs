@@ -1,74 +1,73 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 
-namespace OmniGLM_API.db
+namespace OmniGLM_API.db;
+
+public interface IEntity<TIndex>
 {
-    public interface IEntity<TIndex>
+    TIndex Id { get; set; }
+}
+
+public interface IEFCoreService<TEntity, TIndex>
+{
+    Task<IEnumerable<TEntity>> WhereAsync(Expression<Func<TEntity, bool>> predicate);
+    Task<TEntity?> FetchAsync(TIndex id);
+    IQueryable<TEntity> QueryableWhere(Expression<Func<TEntity, bool>> predicate);
+    Task<TEntity> CreateAsync(TEntity entity);
+    Task<TEntity> UpdateAsync(TEntity entity);
+    Task DeleteAsync(TEntity entity);
+}
+
+public class EFCoreService<TEntity, TIndex> : IEFCoreService<TEntity, TIndex> 
+    where TEntity : class, IEntity<TIndex>, new()
+{
+    private readonly ApplicationContext _context;
+    private DbSet<TEntity> _dbSet => _context.Set<TEntity>();
+    public EFCoreService(
+        ApplicationContext context
+    )
     {
-        TIndex Id { get; set; }
+        _context = context;
     }
 
-    public interface IEFCoreService<TEntity, TIndex>
+    public async Task<IEnumerable<TEntity>> WhereAsync(Expression<Func<TEntity, bool>> predicate)
     {
-        Task<IEnumerable<TEntity>> WhereAsync(Expression<Func<TEntity, bool>> predicate);
-        Task<TEntity?> FetchAsync(TIndex id);
-        IQueryable<TEntity> QueryableWhere(Expression<Func<TEntity, bool>> predicate);
-        Task<TEntity> CreateAsync(TEntity entity);
-        Task<TEntity> UpdateAsync(TEntity entity);
-        Task DeleteAsync(TEntity entity);
+        return await _dbSet.Where(predicate).ToListAsync();
     }
 
-    public class EFCoreService<TEntity, TIndex> : IEFCoreService<TEntity, TIndex> 
-        where TEntity : class, IEntity<TIndex>, new()
+    public async Task<TEntity?> FetchAsync(TIndex id)
     {
-        private readonly ApplicationContext _context;
-        private DbSet<TEntity> _dbSet => _context.Set<TEntity>();
-        public EFCoreService(
-            ApplicationContext context
-        )
-        {
-            _context = context;
-        }
+        var entity = await _dbSet.FindAsync(id);
 
-        public async Task<IEnumerable<TEntity>> WhereAsync(Expression<Func<TEntity, bool>> predicate)
-        {
-            return await _dbSet.Where(predicate).ToListAsync();
-        }
+        return entity;
+    }
 
-        public async Task<TEntity?> FetchAsync(TIndex id)
-        {
-            var entity = await _dbSet.FindAsync(id);
+    public IQueryable<TEntity> QueryableWhere(
+        Expression<Func<TEntity, bool>> predicate
+    ) => _dbSet.Where(predicate);
 
-            return entity;
-        }
+    public async Task<TEntity> CreateAsync(TEntity entity)
+    {
+        var created = _context.Add(entity);
 
-        public IQueryable<TEntity> QueryableWhere(
-            Expression<Func<TEntity, bool>> predicate
-        ) => _dbSet.Where(predicate);
+        await _context.SaveChangesAsync();
 
-        public async Task<TEntity> CreateAsync(TEntity entity)
-        {
-            var created = _context.Add(entity);
+        return created.Entity;
+    }
 
-            await _context.SaveChangesAsync();
+    public async Task<TEntity> UpdateAsync(TEntity entity)
+    {
+        var updated = _context.Update(entity);
 
-            return created.Entity;
-        }
+        await _context.SaveChangesAsync();
 
-        public async Task<TEntity> UpdateAsync(TEntity entity)
-        {
-            var updated = _context.Update(entity);
+        return updated.Entity;
+    }
 
-            await _context.SaveChangesAsync();
+    public async Task DeleteAsync(TEntity entity)
+    {
+        _context.Remove(entity);
 
-            return updated.Entity;
-        }
-
-        public async Task DeleteAsync(TEntity entity)
-        {
-            _context.Remove(entity);
-
-            await _context.SaveChangesAsync();
-        }
+        await _context.SaveChangesAsync();
     }
 }
