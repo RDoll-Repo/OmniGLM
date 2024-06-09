@@ -1,6 +1,5 @@
 using OmniGLM_API.Setup;
 
-// TODO: Find a better place for this during end-of-phase cleanup
 var devOrigin = "_devOrigin";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,9 +14,7 @@ builder.Services.AddCors(options =>
 });
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -32,7 +29,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.UseHttpsRedirection();
 app.UseCors(devOrigin);
 app.UseAuthorization();
 

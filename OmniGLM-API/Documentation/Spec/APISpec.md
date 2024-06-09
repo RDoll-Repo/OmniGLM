@@ -7,7 +7,7 @@ Theorize UX => Add Endpoint to Spec => Alter Schema (if needed) => Implementatio
 ```
 
 ## API Resources
-These are the outward facing REST resources exposed to the client. Many resources are categories being built with the intention of being expandable to include more instances of a category than what comes out of the box.
+These are the outward facing REST resources exposed to the client. Many resources are categories being built with the intention of being expandable to include more instances of a category than what comes out of the box. I find it onerous to chart and maintain every model and corresponding table in this document, so a brief explanation of every resource will instead be written below. Implementation of the resources can be seen in the spec and code. 
 
 * **Game**: A game represents an entry in the user's library. It is the main resource of the project. 
 
@@ -15,85 +15,6 @@ These are the outward facing REST resources exposed to the client. Many resource
 
 * **Console** A category of hardware a title is owned for. It is one to many with games.
 
-## Data Tables
-These are the server-side representations of the resources, while there will be correlation, they are not gauranteed to line up 100% with the code-side models. 
-
-### Game:
-```
-id : GUID (PK)
-title : String
-status : Int (Enum Value)
-console_id : GUID (FK Console)
-format : Int (Enum Value)
-genre_id : GUID (FK Genre)
-length : Int
-created_at : DateTime
-updated_at : DateTime
-date_completed : DateTime
-```
-
-### Genre:
-```
-id : GUID (PK)
-title : String
-created_at : DateTime
-updated_at : DateTime
-```
-
-### Console:
-```
-id : GUID (PK)
-title : String
-created_at : DateTime
-updated_at : DateTime
-```
-
-## Data Models
-The are the code-side representations of the data. The repository pattern will be used to keep these models as easy as possible to work with. 
-
-### Game: 
-```
-Id : GUID
-Title : String
-Status : Status
-Console : Console
-Format : Format
-Genre : Genre
-Length : Int
-CreatedAt : DateTime
-UpdatedAt : DateTime?
-DateCompleted : DateTime?
-```
-
-### Genre:
-```
-Id : GUID 
-Title : String
-CreatedAt : DateTime
-UpdatedAt : DateTime?
-```
-
-### Console:
-```
-Id : GUID 
-title : String
-CreatedAt : DateTime
-UpdatedAt : DateTime?
-```
-
-### Enum Status
-```
-Backlog
-Playing
-Finished
-```
-
-### Enum Format
-```
-Physical
-Digital
-Collectors
-```
 
 ## Controller Routes
 Given the eventual size of this API, it is appropriate to divide what the bulk of this document would be, the API routes, into designated subsections as found below:

@@ -39,9 +39,19 @@ POST /library
         "id": "02d1d49a-ba59-4baf-8668-ed74edb5543d",
         "title": "Baldur's Gate 3",
         "status": "Playing",
-        "console": "Sony Playstation 5",
+        "console": {
+            "id": "482b78b3-a7cd-43ef-ab56-3b5f1befb737",
+            "title": "Sony Playstation 5",
+            "createdAt": "0001-01-01T00:00:00",
+            "updatedAt": null
+        },
         "format": "Special",
-        "genre": "Western RPG",
+        "genre": {
+            "id": "c6d46823-b71c-41fe-bc25-35546c5dfae3",
+            "title": "Western RPG",
+            "createdAt": "2024-04-27T05:15:30.064336Z",
+            "updatedAt": null
+        },
         "length": 63,
         "createdAt": "2012-03-03T01:00:00Z",
         "updatedAt": null,
@@ -71,15 +81,19 @@ GET /library
             {
                 "id": "02d1d49a-ba59-4baf-8668-ed74edb5543d",
                 "title": "Persona 3 FES",
-                "status": "finished",
+                "status": "Finished",
                 "console": {
-                    "id": "5b8defdc-ea65-40e8-9fc7-54ab8d7ff05e",
-                    "consoleName": "Sony Playstation 2"
+                    "id": "482b78b3-a7cd-43ef-ab56-3b5f1befb737",
+                    "title": "Sony Playstation 2",
+                    "createdAt": "0001-01-01T00:00:00",
+                    "updatedAt": null
                 },
-                "format": "collectors",
+                "format": "Special",
                 "genre": {
-                    "id": "11111111-b2f7-4b71-ab1d-b406350ae5fc",
-                    "genreName": "Japanese RPG"
+                    "id": "c6d46823-b71c-41fe-bc25-35546c5dfae3",
+                    "title": "Japanese RPG",
+                    "createdAt": "2024-04-27T05:15:30.064336Z",
+                    "updatedAt": null
                 },
                 "length": 80,
                 "createdAt": "2012-03-03T01:00:00Z",
@@ -89,15 +103,19 @@ GET /library
             {
                 "id": "d3201b32-1dd5-4545-94b4-e9edb5b1c79c",
                 "title": "Xenoblade Chronicles 3",
-                "status": "backlog",
+                "status": "Backlog",
                 "console": {
-                    "id": "84abfb03-f2f9-4113-aa83-4c4992be24c0",
-                    "consoleName": "Nintendo Switch"
+                    "id": "482b78b3-a7cd-43ef-ab56-3b5f1befb737",
+                    "title": "Nintendo Switch",
+                    "createdAt": "0001-01-01T00:00:00",
+                    "updatedAt": null
                 },
-                "format": "collectors",
+                "format": "Special",
                 "genre": {
-                    "id": "11111111-b2f7-4b71-ab1d-b406350ae5fc",
-                    "genreName": "Japanese RPG"
+                    "id": "c6d46823-b71c-41fe-bc25-35546c5dfae3",
+                    "title": "Japanese RPG",
+                    "createdAt": "2024-04-27T05:15:30.064336Z",
+                    "updatedAt": null
                 },
                 "length": 53,
                 "createdAt": "2022-07-26T01:00:00Z",
@@ -107,15 +125,19 @@ GET /library
             {
                 "id": "e14b29d5-4151-447c-a56b-2806ff0caf7c",
                 "title": "Factorio",
-                "status": "playing",
+                "status": "Playing",
                 "console": {
-                    "id": "7f775974-7dcd-4e29-a496-3048f57ff657",
-                    "consoleName": "PC"
+                    "id": "482b78b3-a7cd-43ef-ab56-3b5f1befb737",
+                    "title": "PC",
+                    "createdAt": "0001-01-01T00:00:00",
+                    "updatedAt": null
                 },
-                "format": "digital",
+                "format": "Digital",
                 "genre": {
-                    "id": "fa565198-fc73-4f43-9010-9146a6a9b90e",
-                    "genreName": "Puzzle"
+                    "id": "c6d46823-b71c-41fe-bc25-35546c5dfae3",
+                    "title": "Puzzle",
+                    "createdAt": "2024-04-27T05:15:30.064336Z",
+                    "updatedAt": null
                 },
                 "length": 18,
                 "createdAt": "2022-07-26T01:00:00Z",
@@ -142,10 +164,20 @@ GET /library
     "data": {
         "id": "02d1d49a-ba59-4baf-8668-ed74edb5543d",
         "title": "Persona 3 FES",
-        "status": "finished",
-        "console": "Sony Playstation 2",
-        "format": "collectors",
-        "genre": "Japanese RPG",
+        "status": "Finished",
+        "console": {
+            "id": "482b78b3-a7cd-43ef-ab56-3b5f1befb737",
+            "title": "Sony Playstation 2",
+            "createdAt": "0001-01-01T00:00:00",
+            "updatedAt": null
+        },
+        "format": "Special",
+        "genre": {
+            "id": "c6d46823-b71c-41fe-bc25-35546c5dfae3",
+            "title": "Japanese RPG",
+            "createdAt": "2024-04-27T05:15:30.064336Z",
+            "updatedAt": null
+        },
         "length": 80,
         "createdAt": "2012-03-03T01:00:00Z",
         "updatedAt": "2022-09-30T01:00:00Z",
@@ -187,9 +219,19 @@ PUT /library/{id}
         "id": "02d1d49a-ba59-4baf-8668-ed74edb5543d",
         "title": "Baldur's Gate 3",
         "status": "Finished",
-        "console": "Sony Playstation 5",
+        "console": {
+            "id": "482b78b3-a7cd-43ef-ab56-3b5f1befb737",
+            "title": "Sony Playstation 5",
+            "createdAt": "0001-01-01T00:00:00",
+            "updatedAt": null
+        },
         "format": "Special",
-        "genre": "Western RPG",
+        "genre": {
+            "id": "c6d46823-b71c-41fe-bc25-35546c5dfae3",
+            "title": "Western RPG",
+            "createdAt": "2024-04-27T05:15:30.064336Z",
+            "updatedAt": null
+        },
         "length": 63,
         "createdAt": "2012-03-03T01:00:00Z",
         "updatedAt": "2015-07-23T01:00:00Z",

@@ -1,7 +1,6 @@
-namespace OmniGLM_API.Models
+namespace OmniGLM_API.Models;
+
+public class ApplicationConfig
 {
-    public class ApplicationConfig
-    {
-        public string ConnectionString { get; set; }
-    }
+    public string ConnectionString { get; set; }
 }

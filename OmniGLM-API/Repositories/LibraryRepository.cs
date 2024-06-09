@@ -2,63 +2,62 @@ using OmniGLM_API.db;
 using OmniGLM_API.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace OmniGLM_API.Repositories
+namespace OmniGLM_API.Repositories;
+
+public interface ILibraryRepository
 {
-    public interface ILibraryRepository
+    Task<Game> CreateAsync(Game g);
+    Task<IEnumerable<Game>> SearchAsync();
+    Task<Game?> FetchAsync(Guid id);
+    Task<Game> UpdateAsync(Game g);
+    Task DeleteAsync(Game g);
+}
+
+public class LibraryRepository : ILibraryRepository
+{
+    private readonly IEFCoreService<Game, Guid> _efCoreService;
+
+    public LibraryRepository(IEFCoreService<Game, Guid> efCoreService)
     {
-        Task<Game> CreateAsync(Game g);
-        Task<IEnumerable<Game>> SearchAsync();
-        Task<Game?> FetchAsync(Guid id);
-        Task<Game> UpdateAsync(Game g);
-        Task DeleteAsync(Game g);
+        _efCoreService = efCoreService;
     }
 
-    public class LibraryRepository : ILibraryRepository
+    public async Task<Game> CreateAsync(Game g)
     {
-        private readonly IEFCoreService<Game, Guid> _efCoreService;
+        var result = await _efCoreService.CreateAsync(g);
 
-        public LibraryRepository(IEFCoreService<Game, Guid> efCoreService)
-        {
-            _efCoreService = efCoreService;
-        }
+        return result;
+    }
 
-        public async Task<Game> CreateAsync(Game g)
-        {
-            var result = await _efCoreService.CreateAsync(g);
+    public async Task<IEnumerable<Game>> SearchAsync()
+    {
+        var results = await _efCoreService.QueryableWhere(Game => true)
+            .Include(g => g.Genre)
+            .Include(g => g.Console)
+            .ToListAsync();
 
-            return result;
-        }
+        return results;
+    }
 
-        public async Task<IEnumerable<Game>> SearchAsync()
-        {
-            var results = await _efCoreService.QueryableWhere(Game => true)
-                .Include(g => g.Genre)
-                .Include(g => g.Console)
-                .ToListAsync();
+    public async Task<Game?> FetchAsync(Guid id)
+    {
+        var result = await _efCoreService.QueryableWhere(g => g.Id == id)
+            .Include(g => g.Genre)
+            .Include(g => g.Console)
+            .FirstOrDefaultAsync();
 
-            return results;
-        }
+        return result;
+    }
 
-        public async Task<Game?> FetchAsync(Guid id)
-        {
-            var result = await _efCoreService.QueryableWhere(g => g.Id == id)
-                .Include(g => g.Genre)
-                .Include(g => g.Console)
-                .FirstOrDefaultAsync();
+    public async Task<Game> UpdateAsync(Game g)
+    {
+        var result = await _efCoreService.UpdateAsync(g);
 
-            return result;
-        }
+        return result;
+    }
 
-        public async Task<Game> UpdateAsync(Game g)
-        {
-            var result = await _efCoreService.UpdateAsync(g);
-
-            return result;
-        }
-
-        public async Task DeleteAsync(Game g)
-        {
-            await _efCoreService.DeleteAsync(g);
-        }
+    public async Task DeleteAsync(Game g)
+    {
+        await _efCoreService.DeleteAsync(g);
     }
 }
